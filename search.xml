@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[破解糖果星星达人]]></title>
+    <url>%2F2019%2F03%2F20%2F%E7%A0%B4%E8%A7%A3%E7%B3%96%E6%9E%9C%E6%98%9F%E6%98%9F%E8%BE%BE%E4%BA%BA%2F</url>
+    <content type="text"><![CDATA[把apk 扔到模拟器里面玩一下，还是蛮好玩的，反正死了就要让你充值金币，我们任意输入他提示购买失败，我们尝试一下破解。 试着将apk扔进Android Killer里面，搜过一下关键字“购买失败” 很简单，就是个switch语句，上下浏览一下，找到购买成功 我们还看到了购买取消，我们拖到最下面，尝试把5、6改成4，看能否成功 重新编译，放入模拟器中，购买成功。]]></content>
+      <tags>
+        <tag>安卓逆向</tag>
+      </tags>
+  </entry>
+</search>
