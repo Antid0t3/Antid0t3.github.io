@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[动态调试Smali代码]]></title>
+    <url>%2F2019%2F11%2F23%2F%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95Smali%E4%BB%A3%E7%A0%81%2F</url>
+    <content type="text"><![CDATA[本文主要介绍一下利用Android Studio动态调试Smali代码 第一步：我们使用上一次自己编写的一个简单的登录界面的apk，我们先把这个apk扔到AndroidKiller里面，反编译这个apk。 我们通过AndroidManifest.xml文件找到程序的包名和入口 我们查看AndroidManifest.xml是否存在android:debuggable=”true”这句代码，没有是不能调试apk的 现在调试的这个例子默认是有这句代码的 有的apk中没有这句代码要自行添加上有是不能调试apk的。 第二步：然后我们使用命令adb install apk文件 将apk安装到手机中，打开usb调试模式。 第三步：然后我们打开Smali文件所在的位置，把Smali代码复制到新建的D盘下的一个单独的jwx02文件夹中，并改名为src。 第四步：在AndroidStudio设置中需要安装好Smalidea插件，如果是已经默认安装好的就不用再安装了。 第五步：导入jwx02这个文件到AndroidStudio中。点击File之后选择import project，然后把刚才单独创建的jwx02文件夹导入进来。 第六步：然后将src目录设置为sources root,这一步告诉AndroidStudio这个文件夹下的是源代码。 第七步：接下来配置远程调试选项。选择Run–&gt;Edit Configurations 并增加一个Remote调试的调试选项，端口选择:8700。 第八步：配置JDK。选择File–&gt;Project Structure 配置JDK 第九步：打开Android Device Monitor 第十步：打开cmd,输入命令adb shell am start -D -n hfdcxy.com.myapplication/hfdcxy.com.myapplication.MainActivity 对apk进行动态调试 这条命令运行后手机屏幕将会进入到调试界面(如果手机屏幕没有进入到调试界面说明USB没有连接好手机 或者USB调试模式 没有打开 或者其他原因) 第十一步：打开AndroidStudio,对希望查看的关键代码下断点，之后点击Run,选择debug smali，这里smali是我们之前配置好的调试选项。此时手机会进入程序 在手机上输入用户名和密码 点登陆 程序会断在我下的断点处。F8执行下一步，F9运行程序。 其中第一、二步是查看反编译后的代码，并将apk安装到手机中。第三步到第八步是将反编译后的smali代码导入到AndroidStudio中，并且配置好相关的环境（sources root、Remote、JDK）第九步到第十一步是使用命令对手机开始进行动态调试。]]></content>
+      <categories>
+        <category>网络安全</category>
+      </categories>
+      <tags>
+        <tag>安卓逆向</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[切水果大战]]></title>
     <url>%2F2019%2F11%2F18%2F%E5%88%87%E6%B0%B4%E6%9E%9C%E5%A4%A7%E6%88%98%2F</url>
     <content type="text"><![CDATA[拿到这一款切水果游戏，首先安装到手机上玩一下。 命令：adb install apk文件 体验之后发现一般的道具消费都会提示充值金币，没有充值的话会提示失败我们尝试破解 将APK文件拖到Android Killer 进行反编译，我们看到反编译后的文件我们尝试进行关键字搜索“失败”我们会发现关于支付的代码。 我们浏览代码，可以看java代码，如果对smali代码熟练的话直接看smali 代码，我发现了支付失败的方法、支付成功的方法、支付取消的方法。 接下来我们尝试用三种方法进行破解第一种方法：我们找到了代码中支付失败、支付取消和支付成功的代码，我们可以直接将支付失败和支付取消的方法中的代码全部改为支付成功的代码。第二种方法：第一种方法是直接改支付失败里面的代码，将他们改成支付成功，这是一种思路，我们现在尝试第二种方法，尝试看一下支付失败的代码是在哪里被调用的。我们尝试搜索payResultFalse()方法，搜索到调用payResultFalse()的文件，如图所示，我们发现了调用支付失败和支付成功的位置，我们把调用支付失败的方法改成调用支付成功的方法。破解成功。第三种方法，我们修改switch分支，把:pswitch_1修改为:pswitch_0，这样代码只会跳转到支付成功的方法处，破解成功。]]></content>

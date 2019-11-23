@@ -15,25 +15,35 @@
 
 
 
-<meta name="description" content="安装火柴人游戏玩一下，发现游戏里面有商城，商城里面提供了需要购买的道具，还有一些礼包也需要购买，英雄也需要购买，支付方式分为了话费支付、三方支付。">
+<meta name="description" content="本文主要介绍一下利用Android Studio动态调试Smali代码">
 <meta name="keywords" content="安卓逆向">
 <meta property="og:type" content="article">
-<meta property="og:title" content="火柴人联盟">
-<meta property="og:url" content="https://antid0t3.github.io/2019/11/18/火柴人/index.html">
+<meta property="og:title" content="动态调试Smali代码">
+<meta property="og:url" content="https://antid0t3.github.io/2019/11/23/动态调试Smali代码/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="安装火柴人游戏玩一下，发现游戏里面有商城，商城里面提供了需要购买的道具，还有一些礼包也需要购买，英雄也需要购买，支付方式分为了话费支付、三方支付。">
+<meta property="og:description" content="本文主要介绍一下利用Android Studio动态调试Smali代码">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/raw/master/%E7%81%AB%E6%9F%B4%E4%BA%BA/6.png">
-<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/raw/master/%E7%81%AB%E6%9F%B4%E4%BA%BA/2.png">
-<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/raw/master/%E7%81%AB%E6%9F%B4%E4%BA%BA/3.png">
-<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/raw/master/%E7%81%AB%E6%9F%B4%E4%BA%BA/4.png">
-<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/raw/master/%E7%81%AB%E6%9F%B4%E4%BA%BA/5.png">
-<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/raw/master/%E7%81%AB%E6%9F%B4%E4%BA%BA/7.png">
-<meta property="og:updated_time" content="2019-11-23T06:10:49.903Z">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/1.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/2.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/3.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/4.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/5.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/6.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/7.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/8.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/9.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/10.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/11.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/13.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/12.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/14.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/15.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/16.png?raw=true">
+<meta property="og:updated_time" content="2019-11-23T13:50:03.186Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="火柴人联盟">
-<meta name="twitter:description" content="安装火柴人游戏玩一下，发现游戏里面有商城，商城里面提供了需要购买的道具，还有一些礼包也需要购买，英雄也需要购买，支付方式分为了话费支付、三方支付。">
-<meta name="twitter:image" content="https://github.com/Antid0t3/Antid0t3.github.image/raw/master/%E7%81%AB%E6%9F%B4%E4%BA%BA/6.png">
+<meta name="twitter:title" content="动态调试Smali代码">
+<meta name="twitter:description" content="本文主要介绍一下利用Android Studio动态调试Smali代码">
+<meta name="twitter:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/1.png?raw=true">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -65,7 +75,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>火柴人联盟 | Hexo</title>
+<title>动态调试Smali代码 | Hexo</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -278,11 +288,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-火柴人" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-动态调试Smali代码" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/11/18/火柴人/" class="article-date">
-      <time datetime="2019-11-18T13:07:16.000Z" itemprop="datePublished">2019-11-18</time>
+      <a href="/2019/11/23/动态调试Smali代码/" class="article-date">
+      <time datetime="2019-11-23T07:30:15.000Z" itemprop="datePublished">2019-11-23</time>
 </a>
 
 
@@ -297,7 +307,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      火柴人联盟
+      动态调试Smali代码
     </h1>
   
 
@@ -322,36 +332,67 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><excerpt in index | 首页摘要> </excerpt></p>
+        <p><excerpt in index | 首页摘要></excerpt></p>
 <blockquote>
-<p>安装火柴人游戏玩一下，发现游戏里面有商城，商城里面提供了需要购买的道具，还有一些礼包也需要购买，英雄也需要购买，支付方式分为了话费支付、三方支付。</p>
+<p>本文主要介绍一下利用Android Studio动态调试Smali代码</p>
 </blockquote>
-<a id="more"></a> 
-<the rest of contents | 余下全文> 
+<a id="more"></a>
+<the rest of contents | 余下全文>
 
 <blockquote>
-<p>我们尝试一下搜索一下关键的字符：支付失败、支付成功<br>我们在查询过程中就可以看到支付信息代码所在的文件目录，我们一一打开，发现有短信、联通、移动、电信几种支付方式</p>
+<p>第一步：我们使用上一次自己编写的一个简单的登录界面的apk，我们先把这个apk扔到AndroidKiller里面，反编译这个apk。</p>
 </blockquote>
-<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/raw/master/%E7%81%AB%E6%9F%B4%E4%BA%BA/6.png" width="50%" height="30%"></p>
 <blockquote>
-<p>我们可以看到关于支付信息的代码</p>
+<p>我们通过AndroidManifest.xml文件找到程序的包名和入口</p>
 </blockquote>
-<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/raw/master/%E7%81%AB%E6%9F%B4%E4%BA%BA/2.png" width="50%" height="60%"></p>
 <blockquote>
-<p>我们先打开联通的支付，smali代码如下，就是一个简单的switch语句，我们将支付取消和支付失败的switch语句调用全部改为支付成功的情况。</p>
+<p>我们查看AndroidManifest.xml是否存在android:debuggable=”true”这句代码，没有是不能调试apk的  现在调试的这个例子默认是有这句代码的 有的apk中没有这句代码要自行添加上有是不能调试apk的。</p>
 </blockquote>
-<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/raw/master/%E7%81%AB%E6%9F%B4%E4%BA%BA/3.png" width="50%" height="60%"></p>
-<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/raw/master/%E7%81%AB%E6%9F%B4%E4%BA%BA/4.png" width="50%" height="60%"></p>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/1.png?raw=true" width="50%" height="60%"></p>
 <blockquote>
-<p>我们在点击电信的支付信息，可以看到电信相关的支付成功的方法、支付失败的方法、支付取消的方法。我们使用最简单的方法，将支付失败和支付取消里面的代码全部改为支付成功的代码</p>
+<p>第二步：然后我们使用命令adb install apk文件 将apk安装到手机中，打开usb调试模式。</p>
 </blockquote>
-<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/raw/master/%E7%81%AB%E6%9F%B4%E4%BA%BA/5.png" width="50%" height="60%"></p>
 <blockquote>
-<p>我们在看一下移动支付的代码，和联通的基本一样，也是switch语句，我们还是果断使用switch大法，成功解决。</p>
+<p>第三步：然后我们打开Smali文件所在的位置，把Smali代码复制到新建的D盘下的一个单独的jwx02文件夹中，并改名为src。</p>
 </blockquote>
-<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/raw/master/%E7%81%AB%E6%9F%B4%E4%BA%BA/7.png" width="50%" height="60%"></p>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/2.png?raw=true" width="50%" height="60%"></p>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/3.png?raw=true" width="50%" height="60%"></p>
 <blockquote>
-<p>最后还有一部分去广告，同意支付接口的一系列操作后面再补充。</p>
+<p>第四步：在AndroidStudio设置中需要安装好Smalidea插件，如果是已经默认安装好的就不用再安装了。</p>
+</blockquote>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/4.png?raw=true" width="50%" height="60%"></p>
+<blockquote>
+<p>第五步：导入jwx02这个文件到AndroidStudio中。点击File之后选择import project，然后把刚才单独创建的jwx02文件夹导入进来。</p>
+</blockquote>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/5.png?raw=true" width="50%" height="60%"></p>
+<blockquote>
+<p>第六步：然后将src目录设置为sources root,这一步告诉AndroidStudio这个文件夹下的是源代码。</p>
+</blockquote>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/6.png?raw=true" width="50%" height="60%"></p>
+<blockquote>
+<p>第七步：接下来配置远程调试选项。选择Run–&gt;Edit Configurations 并增加一个Remote调试的调试选项，端口选择:8700。<br><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/7.png?raw=true" width="50%" height="60%"></p>
+</blockquote>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/8.png?raw=true" width="50%" height="60%"></p>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/9.png?raw=true" width="50%" height="60%"></p>
+<blockquote>
+<p>第八步：配置JDK。选择File–&gt;Project Structure 配置JDK<br><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/10.png?raw=true" width="50%" height="60%"></p>
+</blockquote>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/11.png?raw=true" width="50%" height="60%"></p>
+<blockquote>
+<p>第九步：打开Android Device Monitor </p>
+</blockquote>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/13.png?raw=true" width="50%" height="60%"></p>
+<blockquote>
+<p>第十步：打开cmd,输入命令adb shell am start -D -n hfdcxy.com.myapplication/hfdcxy.com.myapplication.MainActivity  对apk进行动态调试 这条命令运行后手机屏幕将会进入到调试界面(如果手机屏幕没有进入到调试界面说明USB没有连接好手机 或者USB调试模式 没有打开 或者其他原因)</p>
+</blockquote>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/12.png?raw=true" width="50%" height="60%"></p>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/14.png?raw=true" width="50%" height="60%"></p>
+<blockquote>
+<p>第十一步：打开AndroidStudio,对希望查看的关键代码下断点，之后点击Run,选择debug smali，这里smali是我们之前配置好的调试选项。此时手机会进入程序 在手机上输入用户名和密码 点登陆 程序会断在我下的断点处。F8执行下一步，F9运行程序。<br><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/15.png?raw=true" width="50%" height="60%"></p>
+</blockquote>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/smali%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95/16.png?raw=true" width="50%" height="60%"></p>
+<blockquote>
+<p>其中第一、二步是查看反编译后的代码，并将apk安装到手机中。<br>第三步到第八步是将反编译后的smali代码导入到AndroidStudio中，并且配置好相关的环境（sources root、Remote、JDK）<br>第九步到第十一步是使用命令对手机开始进行动态调试。</p>
 </blockquote>
 </the>
       
@@ -361,13 +402,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/11/18/火柴人/">火柴人联盟</a></p>
+        <p><span>本文标题:</span><a href="/2019/11/23/动态调试Smali代码/">动态调试Smali代码</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Antid0t3</a></p>
-        <p><span>发布时间:</span>2019-11-18, 21:07:16</p>
-        <p><span>最后更新:</span>2019-11-23, 14:10:49</p>
+        <p><span>发布时间:</span>2019-11-23, 15:30:15</p>
+        <p><span>最后更新:</span>2019-11-23, 21:50:03</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/11/18/火柴人/" title="火柴人联盟">https://antid0t3.github.io/2019/11/18/火柴人/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://antid0t3.github.io/2019/11/18/火柴人/　　作者: Antid0t3" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/11/23/动态调试Smali代码/" title="动态调试Smali代码">https://antid0t3.github.io/2019/11/23/动态调试Smali代码/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://antid0t3.github.io/2019/11/23/动态调试Smali代码/　　作者: Antid0t3" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -379,16 +420,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/11/18/切水果大战/">
-                    切水果大战
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/11/08/匿名网络Tor与I2P的比较研究/">
-                    匿名网络Tor与I2P的比较研究
+                <a href="/2019/11/18/切水果大战/">
+                    切水果大战
                 </a>
             </div>
         
@@ -436,7 +471,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"火柴人联盟　| Hexo　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"动态调试Smali代码　| Hexo　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -456,15 +491,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/11/18/切水果大战/" title="上一篇: 切水果大战">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/11/08/匿名网络Tor与I2P的比较研究/" title="下一篇: 匿名网络Tor与I2P的比较研究">
+            <a href="/2019/11/18/切水果大战/" title="下一篇: 切水果大战">
                 <i class="fa fa-angle-right"></i>
             </a>
         
