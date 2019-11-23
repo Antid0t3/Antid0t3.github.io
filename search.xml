@@ -14,56 +14,61 @@
   <entry>
     <title><![CDATA[切水果大战]]></title>
     <url>%2F2019%2F11%2F18%2F%E5%88%87%E6%B0%B4%E6%9E%9C%E5%A4%A7%E6%88%98%2F</url>
-    <content type="text"><![CDATA[拿到这一款切水果游戏，首先安装到手机上玩一下。 命令：adb install apk文件 体验之后发现一般的道具消费都会提示充值金币，没有充值的话会提示失败我们尝试破解 将APK文件拖到Android Killer 进行反编译，我们看到反编译后的文件我们尝试进行关键字搜索“失败”我们会发现关于支付的代码。 我们浏览代码，可以看java代码，如果对smali代码熟练的话直接看smali 代码，我发现了支付失败的方法、支付成功的方法、支付取消的方法。 接下来我们尝试用三种方法进行破解第一种方法：我们找到了代码中支付失败、支付取消和支付成功的代码，我们可以直接将支付失败和支付取消的方法中的代码全部改为支付成功的代码。第二种方法：第一种方法是直接改支付失败里面的代码，将他们改成支付成功，这是一种思路，我们现在尝试第二种方法，尝试看一下支付失败的代码是在哪里被调用的。我们尝试搜索payResultFalse()方法，搜索到调用payResultFalse()的文件，如图所示，我们发现了调用支付失败和支付成功的位置，我们把调用支付失败的方法改成调用支付成功的方法。破解成功。第三种方法，我们修改switch分支，把:pswitch_1修改为:pswitch_0，这样代码只会跳转到支付成功的方法处，破解成功。]]></content>
+    <content type="text"><![CDATA[本文主要记录破解切水果大战游戏的思路。 拿到这一款切水果游戏，首先安装到手机上玩一下。命令：adb install apk文件体验之后发现一般的道具消费都会提示充值金币，没有充值的话会提示失败我们尝试破解 将APK文件拖到Android Killer 进行反编译，我们看到反编译后的文件我们尝试进行关键字搜索“失败”我们会发现关于支付的代码。 我们浏览代码，可以看java代码，如果对smali代码熟练的话直接看smali 代码，我发现了支付失败的方法、支付成功的方法、支付取消的方法。 接下来我们尝试用三种方法进行破解第一种方法：我们找到了代码中支付失败、支付取消和支付成功的代码，我们可以直接将支付失败和支付取消的方法中的代码全部改为支付成功的代码。第二种方法：第一种方法是直接改支付失败里面的代码，将他们改成支付成功，这是一种思路，我们现在尝试第二种方法，尝试看一下支付失败的代码是在哪里被调用的。我们尝试搜索payResultFalse()方法，搜索到调用payResultFalse()的文件，如图所示，我们发现了调用支付失败和支付成功的位置，我们把调用支付失败的方法改成调用支付成功的方法。破解成功。第三种方法，我们修改switch分支，把:pswitch_1修改为:pswitch_0，这样代码只会跳转到支付成功的方法处，破解成功。]]></content>
       <categories>
         <category>网络安全</category>
       </categories>
       <tags>
         <tag>安卓逆向</tag>
+        <tag>游戏破解</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[火柴人联盟]]></title>
     <url>%2F2019%2F11%2F18%2F%E7%81%AB%E6%9F%B4%E4%BA%BA%2F</url>
-    <content type="text"><![CDATA[安装火柴人游戏玩一下，发现游戏里面有商城，商城里面提供了需要购买的道具，还有一些礼包也需要购买，英雄也需要购买，支付方式分为了话费支付、三方支付。 我们尝试一下搜索一下关键的字符：支付失败、支付成功我们在查询过程中就可以看到支付信息代码所在的文件目录，我们一一打开，发现有短信、联通、移动、电信几种支付方式 我们可以看到关于支付信息的代码 我们先打开联通的支付，smali代码如下，就是一个简单的switch语句，我们将支付取消和支付失败的switch语句调用全部改为支付成功的情况。 我们在点击电信的支付信息，可以看到电信相关的支付成功的方法、支付失败的方法、支付取消的方法。我们使用最简单的方法，将支付失败和支付取消里面的代码全部改为支付成功的代码 我们在看一下移动支付的代码，和联通的基本一样，也是switch语句，我们还是果断使用switch大法，成功解决。 最后还有一部分去广告，同意支付接口的一系列操作后面再补充。]]></content>
+    <content type="text"><![CDATA[本文主要记录破解火柴人联盟游戏的思路。 安装火柴人游戏玩一下，发现游戏里面有商城，商城里面提供了需要购买的道具，还有一些礼包也需要购买，英雄也需要购买，支付方式分为了话费支付、三方支付。 我们尝试一下搜索一下关键的字符：支付失败、支付成功我们在查询过程中就可以看到支付信息代码所在的文件目录，我们一一打开，发现有短信、联通、移动、电信几种支付方式 我们可以看到关于支付信息的代码 我们先打开联通的支付，smali代码如下，就是一个简单的switch语句，我们将支付取消和支付失败的switch语句调用全部改为支付成功的情况。 我们在点击电信的支付信息，可以看到电信相关的支付成功的方法、支付失败的方法、支付取消的方法。我们使用最简单的方法，将支付失败和支付取消里面的代码全部改为支付成功的代码 我们在看一下移动支付的代码，和联通的基本一样，也是switch语句，我们还是果断使用switch大法，成功解决。 最后还有一部分去广告，同意支付接口的一系列操作后面再补充。]]></content>
       <categories>
         <category>网络安全</category>
       </categories>
       <tags>
         <tag>安卓逆向</tag>
+        <tag>游戏破解</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[匿名网络Tor与I2P的比较研究]]></title>
     <url>%2F2019%2F11%2F08%2F%E5%8C%BF%E5%90%8D%E7%BD%91%E7%BB%9CTor%E4%B8%8EI2P%E7%9A%84%E6%AF%94%E8%BE%83%E7%A0%94%E7%A9%B6%2F</url>
-    <content type="text"><![CDATA[Tor（the onion router）是部署最多的匿名通信系统，提供在线匿名和隐私保护，而隐形互联网I2P（invisible Internet project）允许应用程序通过使用大蒜路由，以匿名和安全方式相互发送消息。 Tor与I2P使用术语与一些关键区别： Tor匿名网络 I2P匿名网络 基于电路的低延迟覆盖网络 基于分组的高延迟重叠网络 允许匿名访问分别实施和操作外部互联网服务 试图将现有的互联网服务转移到I2P网络，并在框架内提供服务实现 双向电路 单向通道 集中式框架 分布式架构 使用Socket Secure（SOCKS）接口，只能通过TCP传输消息 I2P 是一个中间件，提供应用程序可用于通过网络进行通信的API，可以在UDP和TC之间进行选择 Cell，细胞 Message，消息 Client，客户 Router、Clients，路由器或客户端 Circuit，电路 Tunnel，隧道 Directory，目录 Net DB，网络数据库 directory server，目录服务器 floodfill router，floodfill 路由器 Entry guard，入境卫兵 Fast peer，快速对等体 Ingress node，入口节点 Inproxy，入口代理 exit node，退出节点 Outproxy，出口代理 hidden service，隐藏服务 Eepsite or destination，Eepsite 或目的地 hidden service descriptor，隐藏服务描述符 lease set，租约集 introduction point，介绍点 inbound gateway，入站网关 onion routing，洋葱路由 garlic routing，大蒜路由 Node、Server，节点、服务器 Router，路由器 Onion agent，洋葱代理 I2P Tunnel 客户端 Onion service，洋葱服务 隐藏服务，Eepsite 或目的地 Rendezvous Point，会合点 Inbound Gateway+Outbound Endpoint，入站/出站网关 Router descriptor，路由器描述符 Routerinfo，路由器信息 Tor和I2P开发技术比较： 特征 域名 节点选择标准 目录服务器/floodfill 对等体 分组/电路交换 单向/双向 保护以免检测客户端活动 隧道/电路的期限 TCP/UDP传输 SOCKS/ I2P API Tor .onion 信任、声明、能力 信任和硬编码 电路交换 双向电路 较少保护 时间长 TCP SOCKS I2P .i2p 不断分析和排名性能 多变且不可信 分组交换 单向隧道 较多保护 时间短 两者都可以 I2P API]]></content>
+    <content type="text"><![CDATA[本文主要记录匿名网络Tor与I2P的主要区别。 Tor（the onion router）是部署最多的匿名通信系统，提供在线匿名和隐私保护，而隐形互联网I2P（invisible Internet project）允许应用程序通过使用大蒜路由，以匿名和安全方式相互发送消息。 Tor与I2P使用术语与一些关键区别： Tor匿名网络 I2P匿名网络 基于电路的低延迟覆盖网络 基于分组的高延迟重叠网络 允许匿名访问分别实施和操作外部互联网服务 试图将现有的互联网服务转移到I2P网络，并在框架内提供服务实现 双向电路 单向通道 集中式框架 分布式架构 使用Socket Secure（SOCKS）接口，只能通过TCP传输消息 I2P 是一个中间件，提供应用程序可用于通过网络进行通信的API，可以在UDP和TC之间进行选择 Cell，细胞 Message，消息 Client，客户 Router、Clients，路由器或客户端 Circuit，电路 Tunnel，隧道 Directory，目录 Net DB，网络数据库 directory server，目录服务器 floodfill router，floodfill 路由器 Entry guard，入境卫兵 Fast peer，快速对等体 Ingress node，入口节点 Inproxy，入口代理 exit node，退出节点 Outproxy，出口代理 hidden service，隐藏服务 Eepsite or destination，Eepsite 或目的地 hidden service descriptor，隐藏服务描述符 lease set，租约集 introduction point，介绍点 inbound gateway，入站网关 onion routing，洋葱路由 garlic routing，大蒜路由 Node、Server，节点、服务器 Router，路由器 Onion agent，洋葱代理 I2P Tunnel 客户端 Onion service，洋葱服务 隐藏服务，Eepsite 或目的地 Rendezvous Point，会合点 Inbound Gateway+Outbound Endpoint，入站/出站网关 Router descriptor，路由器描述符 Routerinfo，路由器信息 Tor和I2P开发技术比较： 特征 域名 节点选择标准 目录服务器/floodfill 对等体 分组/电路交换 单向/双向 保护以免检测客户端活动 隧道/电路的期限 TCP/UDP传输 SOCKS/ I2P API Tor .onion 信任、声明、能力 信任和硬编码 电路交换 双向电路 较少保护 时间长 TCP SOCKS I2P .i2p 不断分析和排名性能 多变且不可信 分组交换 单向隧道 较多保护 时间短 两者都可以 I2P API]]></content>
       <categories>
         <category>网络安全</category>
       </categories>
       <tags>
         <tag>流量识别</tag>
+        <tag>匿名网络</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[登山赛车破解]]></title>
     <url>%2F2019%2F03%2F21%2F%E7%99%BB%E5%B1%B1%E8%B5%9B%E8%BD%A6%E7%A0%B4%E8%A7%A3%2F</url>
-    <content type="text"><![CDATA[试玩一下登山赛车这款游戏，尝试一下破解。 下载好apk ,放入模拟器中试玩一下，我们点击购买金币，不支付的话会提示购买失败。 我们可以看到付款失败特别明显，我们可以把apk拖进android killer里面搜索一下付款 失败的字符，找到提示付款失败的代码。 可以看到是一个switch语句，我们找到添加金币的代码。 这里是付款失败的代码块 下面两端代码块是添加的金币的代码块。 我们尝试把它拖到最下面，可以看到这样的代码。 我们将两个都改为:pswitch_0。 编译完成，再拖入模拟器里面试一下 成功获取金币，破解成功。]]></content>
+    <content type="text"><![CDATA[本文主要记录破解登山赛车游戏的思路。 下载好apk ,放入模拟器中试玩一下，我们点击购买金币，不支付的话会提示购买失败。 我们可以看到付款失败特别明显，我们可以把apk拖进android killer里面搜索一下付款 失败的字符，找到提示付款失败的代码。 可以看到是一个switch语句，我们找到添加金币的代码。 这里是付款失败的代码块 下面两端代码块是添加的金币的代码块。 我们尝试把它拖到最下面，可以看到这样的代码。 我们将两个都改为:pswitch_0。 编译完成，再拖入模拟器里面试一下 成功获取金币，破解成功。]]></content>
       <categories>
         <category>网络安全</category>
       </categories>
       <tags>
         <tag>安卓逆向</tag>
+        <tag>游戏破解</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[破解糖果星星达人]]></title>
     <url>%2F2019%2F03%2F20%2F%E7%A0%B4%E8%A7%A3%E7%B3%96%E6%9E%9C%E6%98%9F%E6%98%9F%E8%BE%BE%E4%BA%BA%2F</url>
-    <content type="text"><![CDATA[试玩一下糖果星星达人，尝试一下破解金币。 把apk 扔到模拟器里面玩一下，还是蛮好玩的，反正死了就要让你充值金币，我们任意输入他提示购买失败，我们尝试一下破解。试着将apk扔进Android Killer里面，搜过一下关键字“购买失败” 很简单，就是个switch语句，上下浏览一下，找到购买成功 我们还看到了购买取消，我们拖到最下面，尝试把5、6改成4，看能否成功 重新编译，放入模拟器中，购买成功。]]></content>
+    <content type="text"><![CDATA[本文主要记录破解糖果星星达人游戏思路。 试玩一下糖果星星达人，尝试一下破解金币。把apk 扔到模拟器里面玩一下，还是蛮好玩的，反正死了就要让你充值金币，我们任意输入他提示购买失败，我们尝试一下破解。试着将apk扔进Android Killer里面，搜过一下关键字“购买失败” 很简单，就是个switch语句，上下浏览一下，找到购买成功 我们还看到了购买取消，我们拖到最下面，尝试把5、6改成4，看能否成功 重新编译，放入模拟器中，购买成功。]]></content>
       <categories>
         <category>网络安全</category>
       </categories>
       <tags>
         <tag>安卓逆向</tag>
+        <tag>游戏破解</tag>
       </tags>
   </entry>
 </search>
