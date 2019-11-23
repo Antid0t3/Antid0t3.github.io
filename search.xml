@@ -12,6 +12,17 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[火柴人联盟]]></title>
+    <url>%2F2019%2F11%2F18%2F%E7%81%AB%E6%9F%B4%E4%BA%BA%2F</url>
+    <content type="text"><![CDATA[安装火柴人游戏玩一下，发现游戏里面有商城，商城里面提供了需要购买的道具，还有一些礼包也需要购买，英雄也需要购买，支付方式分为了话费支付、三方支付。 我们尝试一下搜索一下关键的字符：支付失败、支付成功我们在查询过程中就可以看到支付信息代码所在的文件目录，我们一一打开，发现有短信、联通、移动、电信几种支付方式 我们可以看到关于支付信息的代码 我们先打开联通的支付，smali代码如下，就是一个简单的switch语句，我们将支付取消和支付失败的switch语句调用全部改为支付成功的情况。 我们在点击电信的支付信息，可以看到电信相关的支付成功的方法、支付失败的方法、支付取消的方法。我们使用最简单的方法，将支付失败和支付取消里面的代码全部改为支付成功的代码 我们在看一下移动支付的代码，和联通的基本一样，也是switch语句，我们还是果断使用switch大法，成功解决。 最后还有一部分去广告，同意支付接口的一系列操作后面再补充。]]></content>
+      <categories>
+        <category>网络安全</category>
+      </categories>
+      <tags>
+        <tag>安卓逆向</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[匿名网络Tor与I2P的比较研究]]></title>
     <url>%2F2019%2F11%2F08%2F%E5%8C%BF%E5%90%8D%E7%BD%91%E7%BB%9CTor%E4%B8%8EI2P%E7%9A%84%E6%AF%94%E8%BE%83%E7%A0%94%E7%A9%B6%2F</url>
     <content type="text"><![CDATA[Tor（the onion router）是部署最多的匿名通信系统，提供在线匿名和隐私保护，而隐形互联网I2P（invisible Internet project）允许应用程序通过使用大蒜路由，以匿名和安全方式相互发送消息。 Tor与I2P使用术语与一些关键区别： Tor匿名网络 I2P匿名网络 基于电路的低延迟覆盖网络 基于分组的高延迟重叠网络 允许匿名访问分别实施和操作外部互联网服务 试图将现有的互联网服务转移到I2P网络，并在框架内提供服务实现 双向电路 单向通道 集中式框架 分布式架构 使用Socket Secure（SOCKS）接口，只能通过TCP传输消息 I2P 是一个中间件，提供应用程序可用于通过网络进行通信的API，可以在UDP和TC之间进行选择 Cell，细胞 Message，消息 Client，客户 Router、Clients，路由器或客户端 Circuit，电路 Tunnel，隧道 Directory，目录 Net DB，网络数据库 directory server，目录服务器 floodfill router，floodfill 路由器 Entry guard，入境卫兵 Fast peer，快速对等体 Ingress node，入口节点 Inproxy，入口代理 exit node，退出节点 Outproxy，出口代理 hidden service，隐藏服务 Eepsite or destination，Eepsite 或目的地 hidden service descriptor，隐藏服务描述符 lease set，租约集 introduction point，介绍点 inbound gateway，入站网关 onion routing，洋葱路由 garlic routing，大蒜路由 Node、Server，节点、服务器 Router，路由器 Onion agent，洋葱代理 I2P Tunnel 客户端 Onion service，洋葱服务 隐藏服务，Eepsite 或目的地 Rendezvous Point，会合点 Inbound Gateway+Outbound Endpoint，入站/出站网关 Router descriptor，路由器描述符 Routerinfo，路由器信息 Tor和I2P开发技术比较： 特征 域名 节点选择标准 目录服务器/floodfill 对等体 分组/电路交换 单向/双向 保护以免检测客户端活动 隧道/电路的期限 TCP/UDP传输 SOCKS/ I2P API Tor .onion 信任、声明、能力 信任和硬编码 电路交换 双向电路 较少保护 时间长 TCP SOCKS I2P .i2p 不断分析和排名性能 多变且不可信 分组交换 单向隧道 较多保护 时间短 两者都可以 I2P API]]></content>
