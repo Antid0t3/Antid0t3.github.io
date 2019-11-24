@@ -15,13 +15,27 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://antid0t3.github.io/archives/2019/11/index.html">
+<meta name="description" content="本文主要介绍在Smali代码中插入Log。">
+<meta name="keywords" content="安卓逆向,基础知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Smali代码中插入Log">
+<meta property="og:url" content="https://antid0t3.github.io/2019/11/24/Smali代码中插入Log/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文主要介绍在Smali代码中插入Log。">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/1.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/2.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/3.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/4.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/5.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/6.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/7.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/8.png?raw=true">
+<meta property="og:updated_time" content="2019-11-24T08:31:57.722Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="Smali代码中插入Log">
+<meta name="twitter:description" content="本文主要介绍在Smali代码中插入Log。">
+<meta name="twitter:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/1.png?raw=true">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -53,7 +67,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Archives: 2019/11 | Hexo</title>
+<title>Smali代码中插入Log | Hexo</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -63,8 +77,8 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: false,
-        isArchive: true,
+        isPost: true,
+        isArchive: false,
         isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
@@ -266,208 +280,232 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-Smali代码中插入Log" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2019/11/24/Smali代码中插入Log/" class="archive-article-date">
-      <time datetime="2019-11-24T06:44:34.000Z" itemprop="datePublished">11-24</time>
+    <div class="article-meta">
+      <a href="/2019/11/24/Smali代码中插入Log/" class="article-date">
+      <time datetime="2019-11-24T06:44:34.000Z" itemprop="datePublished">2019-11-24</time>
 </a>
 
 
-        </div>
-         
+    </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/24/Smali代码中插入Log/">Smali代码中插入Log</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Smali代码中插入Log
     </h1>
   
 
-        <div class="article-info info-on-archive">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
     <div class="article-category tagcloud">
     <a class="article-category-link" href="/categories/网络安全/">网络安全</a>
     </div>
 
 
-          
+        
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/基础知识/">基础知识</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/安卓逆向/">安卓逆向</a></li></ul>
     </div>
 
-        </div>
         <div class="clearfix"></div>
-    </header>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><excerpt in index | 首页摘要></excerpt></p>
+<blockquote>
+<p>本文主要介绍在Smali代码中插入Log。</p>
+</blockquote>
+<a id="more"></a>
+<the rest of contents | 余下全文>
+
+<blockquote>
+<p>这里我编写了一个Demo 从下面的代码中可以看出我在onCreate方法中执行了三个函数 函数名分别是fun1 fun2和fun3 并且在下面加入一条Log 目的是为了打印出函数fun1的返回值 因为Log.i的两个参数都必须是String类型  所以这里把int类型的fun1这个函数通过String.valueOf函数转换成String类型</p>
+</blockquote>
+<pre><code>public class MainActivity extends AppCompatActivity {
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    fun1();
+    fun2();
+    fun3();
+    Log.i(&quot;这个值是&quot;,String.valueOf(fun1()));
+
+}
+public int fun1()
+{
+    int value = Test.value;
+    return value;
+}
+public int fun2()
+{
+    int value2 = Test.value2;
+    return value2;
+}
+public String fun3()
+{
+    String str = Test.str;
+    String str2 = Test.str2;
+    int value3 = Test.value3;
+    return str2;
+} 
+}
+</code></pre><blockquote>
+<p>接下来我们需要完成以下三个任务：<br>任务一<br>添加Log打印出fun2,fun3的值 (其实就是函数的返回值)<br>任务二<br>添加Log打印出fun3里面String类型str的值<br>任务三<br>添加Log打印出fun3里面int类型value3的值</p>
+</blockquote>
+<blockquote>
+<p>首先我们来完成任务一。我们先来打印fun2的值，我们发现原来已经打印过fun1的值了，fun2和fun1函数返回值类型都一样，都需要调用String.valueOf()来转化为int类型，那我们打印fun2就很简单了，只需要找到fun1的打印语句的代码，换成fun2就成功了。</p>
+</blockquote>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/1.png?raw=true" height="60%" width="50%"></p>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/2.png?raw=true" height="60%" width="50%"></p>
+<blockquote>
+<p>我们现在来打印fun3的值，我们发现fun3的返回值直接就是String类型的，我们只需要将上面fun1和fun2的代码中的fun1改为fun3，并将返回值类型改为String，并且将类型转换的代码删掉就成功了。任务一就成功完成了</p>
+</blockquote>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/3.png?raw=true" height="60%" width="50%"></p>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/4.png?raw=true" height="60%" width="50%"></p>
+<blockquote>
+<p>现在来完成第二个任务，打印fun3中String类型的str的值。我们直接找到fun3方法中的str值，他一定会将str的值放到一个寄存器中，我们找到这个寄存器，然后打印出他的值就成功了，顺利完成任务二。</p>
+</blockquote>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/5.png?raw=true" height="60%" width="50%"></p>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/6.png?raw=true" height="60%" width="50%"></p>
+<blockquote>
+<p>现在我们来完成任务三，我们思路跟任务二相同，在fun3方法中找到存放value3的寄存器，然后尝试把他打印出来。</p>
+</blockquote>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/7.png?raw=true" height="60%" width="50%"></p>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/8.png?raw=true" height="60%" width="50%"></p>
+<blockquote>
+<p>本节课从简单的插入Log到从smali代码中打印变量的值,然后从中牵扯到了类型转换,最后通过完成三条任务为主线,每一个例子 每一个点都很精致并且实用,这节课的内容可以留着当做Log方面参考文档 虽然本节课的篇幅比较长 但是所讲的所有东西,最好自己能有一些心得。</p>
+</blockquote>
+</the>
+      
+    </div>
+    
   </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/11/24/Smali代码中插入Log/">Smali代码中插入Log</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Antid0t3</a></p>
+        <p><span>发布时间:</span>2019-11-24, 14:44:34</p>
+        <p><span>最后更新:</span>2019-11-24, 16:31:57</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/11/24/Smali代码中插入Log/" title="Smali代码中插入Log">https://antid0t3.github.io/2019/11/24/Smali代码中插入Log/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://antid0t3.github.io/2019/11/24/Smali代码中插入Log/　　作者: Antid0t3" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2019/11/23/动态调试Smali代码/">
+                    动态调试Smali代码
+                </a>
+            </div>
+        
+    </nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2019/11/23/动态调试Smali代码/" class="archive-article-date">
-      <time datetime="2019-11-23T07:30:15.000Z" itemprop="datePublished">11-23</time>
-</a>
+
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">文章目录</strong>
+        
+            
+        
+    </div>
+    <style>
+        .left-col .switch-btn,
+        .left-col .switch-area {
+            display: none;
+        }
+        .toc-level-3 i,
+        .toc-level-3 ol {
+            display: none !important;
+        }
+    </style>
+
+    <input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
+
+    <script>
+        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+    </script>
 
 
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
         </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/23/动态调试Smali代码/">动态调试Smali代码</a>
-    </h1>
-  
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"Smali代码中插入Log　| Hexo　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
 
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/网络安全/">网络安全</a>
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2019/11/23/动态调试Smali代码/" title="下一篇: 动态调试Smali代码">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
     </div>
 
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/安卓逆向/">安卓逆向</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2019/11/18/切水果大战/" class="archive-article-date">
-      <time datetime="2019-11-18T13:07:16.000Z" itemprop="datePublished">11-18</time>
-</a>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/11/24/Smali代码中插入Log/">Smali代码中插入Log</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/23/动态调试Smali代码/">动态调试Smali代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/18/切水果大战/">切水果大战</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/18/火柴人/">火柴人联盟</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/08/匿名网络Tor与I2P的比较研究/">匿名网络Tor与I2P的比较研究</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/21/登山赛车破解/">登山赛车破解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/20/破解糖果星星达人/">破解糖果星星达人</a></li></ul>
 
 
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/18/切水果大战/">切水果大战</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/网络安全/">网络安全</a>
-    </div>
 
 
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/安卓逆向/">安卓逆向</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/游戏破解/">游戏破解</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2019/11/18/火柴人/" class="archive-article-date">
-      <time datetime="2019-11-18T13:07:16.000Z" itemprop="datePublished">11-18</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/18/火柴人/">火柴人联盟</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/网络安全/">网络安全</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/安卓逆向/">安卓逆向</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/游戏破解/">游戏破解</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a href="/2019/11/08/匿名网络Tor与I2P的比较研究/" class="archive-article-date">
-      <time datetime="2019-11-08T06:15:19.000Z" itemprop="datePublished">11-08</time>
-</a>
-
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/11/08/匿名网络Tor与I2P的比较研究/">匿名网络Tor与I2P的比较研究</a>
-    </h1>
-  
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/网络安全/">网络安全</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/匿名网络/">匿名网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/流量识别/">流量识别</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-
+    <script>
+        
+    </script>
 </div>
       <footer id="footer">
     <div class="outer">
