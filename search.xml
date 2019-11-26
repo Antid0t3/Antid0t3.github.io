@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[AndroidStudio编写第一个so]]></title>
+    <url>%2F2019%2F11%2F26%2FAS%E7%BC%96%E5%86%99%E7%AD%89%E4%B8%80%E4%B8%AAso%2F</url>
+    <content type="text"><![CDATA[本文主要记录用AndroidStudio编写第一个so 打开AndroidStudio新建一个Android项目，在包里面建一个普通的java类，里面写上如图所示的代码。里面有一个sayhello的方法和一个加载so库的静态初始化块。静态初始化块中的JniTest是我们提前给so库名。我们发现方法标红，是因为没有生成对应的头文件和so库，我们下一步就会完成这些 我们使用命令行在java目录下执行javah -d ../jni 包名.类名，会在java上一级目录中生成一个jni文件夹（该文件夹与java同级）,文件夹中存放的就是.h的头文件。 接着在jni文件夹中创建一个main.c文件，把.h的头文件导入进去，把sayhello方法在main.c中实现。 把下载的ndk环境与AndroidStudio关联起来，local.properties也会显示出ndk的路径。 打开app Module的build.gradle文件，在defaultConfig节点里添加以下代码 注意这里的moduleName，是我们在之前自己编写的类里面加载的so库名。 ndk { moduleName &quot;JniTest&quot; ldLibs &quot;log&quot;, &quot;z&quot;, &quot;m&quot; abiFilters &quot;armeabi&quot;, &quot;armeabi-v7a&quot;, &quot;x86&quot; } 还要在gradle.properties里面加上这么一句话：android.useDeprecatedNdk=true 接下来直接rubuild project 发现出现了错误，修改gradle.properties里面这一句话：android.useDeprecatedNdk=true，按照如图所示修改，就成功了 可能出现这种错误，在jni文件夹下建一个.c的空文件夹就可以解决。（该错误时不时的会出现，具体原因以后再把它搞清楚） 我们rebuild一下就可以生成so库了 生成的so在项目的app\build\intermediates\ndk\debug\lib路径下 我们可以在main目录下建立一个jniLIB,然后把lib里面的文件复制过来。 so库生成完毕，现在我们在Mainactivity中打印MyJBI中的sayhello()。成功实现！]]></content>
+      <categories>
+        <category>网络安全</category>
+      </categories>
+      <tags>
+        <tag>安卓逆向</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Smali代码中插入Log]]></title>
     <url>%2F2019%2F11%2F24%2FSmali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log%2F</url>
     <content type="text"><![CDATA[本文主要介绍在Smali代码中插入Log。 这里我编写了一个Demo 从下面的代码中可以看出我在onCreate方法中执行了三个函数 函数名分别是fun1 fun2和fun3 并且在下面加入一条Log 目的是为了打印出函数fun1的返回值 因为Log.i的两个参数都必须是String类型 所以这里把int类型的fun1这个函数通过String.valueOf函数转换成String类型 public class MainActivity extends AppCompatActivity { @Override protected void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState); setContentView(R.layout.activity_main); fun1(); fun2(); fun3(); Log.i(&quot;这个值是&quot;,String.valueOf(fun1())); } public int fun1() { int value = Test.value; return value; } public int fun2() { int value2 = Test.value2; return value2; } public String fun3() { String str = Test.str; String str2 = Test.str2; int value3 = Test.value3; return str2; } } 接下来我们需要完成以下三个任务：任务一添加Log打印出fun2,fun3的值 (其实就是函数的返回值)任务二添加Log打印出fun3里面String类型str的值任务三添加Log打印出fun3里面int类型value3的值 首先我们来完成任务一。我们先来打印fun2的值，我们发现原来已经打印过fun1的值了，fun2和fun1函数返回值类型都一样，都需要调用String.valueOf()来转化为int类型，那我们打印fun2就很简单了，只需要找到fun1的打印语句的代码，换成fun2就成功了。 我们现在来打印fun3的值，我们发现fun3的返回值直接就是String类型的，我们只需要将上面fun1和fun2的代码中的fun1改为fun3，并将返回值类型改为String，并且将类型转换的代码删掉就成功了。任务一就成功完成了 现在来完成第二个任务，打印fun3中String类型的str的值。我们直接找到fun3方法中的str值，他一定会将str的值放到一个寄存器中，我们找到这个寄存器，然后打印出他的值就成功了，顺利完成任务二。 现在我们来完成任务三，我们思路跟任务二相同，在fun3方法中找到存放value3的寄存器，然后尝试把他打印出来。 本节课从简单的插入Log到从smali代码中打印变量的值,然后从中牵扯到了类型转换,最后通过完成三条任务为主线,每一个例子 每一个点都很精致并且实用,这节课的内容可以留着当做Log方面参考文档 虽然本节课的篇幅比较长 但是所讲的所有东西,最好自己能有一些心得。]]></content>
