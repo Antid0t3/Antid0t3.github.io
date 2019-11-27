@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[apktool的使用]]></title>
+    <url>%2F2019%2F11%2F27%2Fapktool%E7%9A%84%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[本文主要介绍一下apktool的使用 一、下载最新版apktool,官网链接:https://ibotpeaches.github.io/Apktool/ 二、配置apktool1.将下载好的apktool重命名为apktool.jar 并下载apktool.bat 下载链接：https://pan.baidu.com/s/1ClEDZ1yiUobG46sQtaSY8Q 密码：gofa2.将下载的apktool重命名为apktoool.jar 并把apktool.bat一起放到C:\Windows目录下 按住快捷键win+R,输入cmd快捷键打开cmd命令窗口,输入apktool,配置成功显示如下: apktool 常用的两个命令如下解包：apktool d test.apk重新打包：apktool b test -o testc.apk 解压的text文件夹是解包后的文件夹 在这里我们可以修改apk里面的一些文件 那么testc.apk就是重打包后的apk以下以上一篇博客AndroidStudio编写第一个so编写出的app-debug.apk测试为例子 1.cd 进入apk所在目录 输入解包命令解包成功会在当前目录下生成app-debug文件夹apktool d app-debug.apk 2.输入重打包命令 -o是重命名apktool b app-debug -o testc.apk 打开命令窗口输入adb install apk文件 发现安装失败提示了Failure [INSTALL_FAILED_TEST_ONLY]这个错误 这个错误有两个解决办法：第一种：在安装命令中加入-t.即adb install -t D:\AndroidStudioProjects\TestJni2\app\build\outputs\apk\debug\testc.apk 第二种：修改AndroidManifest.xml文件，把android:testOnly=”true”改成android:testOnly=”false”或者删掉这一行。 我们就用第一种方法安装，发现安装又出现了错误：Failure [INSTALL_PARSE_FAILED_NO_CERTIFICATES]它提示没有签名。我们打开AndroidKiller-工具-apk签名，把需要签名的testc.apk拖进去，进行签名 签名完成后，在testc.apk同目录的文件夹下生成一个签名后的apk文件 签名后我们再进行apk的安装，这次就顺利安装成功！]]></content>
+      <categories>
+        <category>网络安全</category>
+      </categories>
+      <tags>
+        <tag>安卓逆向</tag>
+        <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[AndroidStudio编写第一个so]]></title>
     <url>%2F2019%2F11%2F26%2FAS%E7%BC%96%E5%86%99%E7%AD%89%E4%B8%80%E4%B8%AAso%2F</url>
     <content type="text"><![CDATA[本文主要记录用AndroidStudio编写第一个so 打开AndroidStudio新建一个Android项目，在包里面建一个普通的java类，里面写上如图所示的代码。里面有一个sayhello的方法和一个加载so库的静态初始化块。静态初始化块中的JniTest是我们提前给so库名。我们发现方法标红，是因为没有生成对应的头文件和so库，我们下一步就会完成这些 我们使用命令行在java目录下执行javah -d ../jni 包名.类名，会在java上一级目录中生成一个jni文件夹（该文件夹与java同级）,文件夹中存放的就是.h的头文件。 接着在jni文件夹中创建一个main.c文件，把.h的头文件导入进去，把sayhello方法在main.c中实现。 把下载的ndk环境与AndroidStudio关联起来，local.properties也会显示出ndk的路径。 打开app Module的build.gradle文件，在defaultConfig节点里添加以下代码 注意这里的moduleName，是我们在之前自己编写的类里面加载的so库名。 ndk { moduleName &quot;JniTest&quot; ldLibs &quot;log&quot;, &quot;z&quot;, &quot;m&quot; abiFilters &quot;armeabi&quot;, &quot;armeabi-v7a&quot;, &quot;x86&quot; } 还要在gradle.properties里面加上这么一句话：android.useDeprecatedNdk=true 接下来直接rubuild project 发现出现了错误，修改gradle.properties里面这一句话：android.useDeprecatedNdk=true，按照如图所示修改，就成功了 可能出现这种错误，在jni文件夹下建一个.c的空文件夹就可以解决。（该错误时不时的会出现，具体原因以后再把它搞清楚） 我们rebuild一下就可以生成so库了 生成的so在项目的app\build\intermediates\ndk\debug\lib路径下 我们可以在main目录下建立一个jniLIB,然后把lib里面的文件复制过来。 so库生成完毕，现在我们在Mainactivity中打印MyJBI中的sayhello()。成功实现！]]></content>
