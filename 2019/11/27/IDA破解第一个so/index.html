@@ -15,34 +15,40 @@
 
 
 
-<meta name="description" content="本文主要记录用AndroidStudio编写第一个so">
+<meta name="description" content="本文主要记录用IDA破解第一个so">
 <meta name="keywords" content="安卓逆向">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AndroidStudio编写第一个so">
-<meta property="og:url" content="https://antid0t3.github.io/2019/11/26/AS编写等一个so/index.html">
+<meta property="og:title" content="IDA破解第一个so">
+<meta property="og:url" content="https://antid0t3.github.io/2019/11/27/IDA破解第一个so/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="本文主要记录用AndroidStudio编写第一个so">
+<meta property="og:description" content="本文主要记录用IDA破解第一个so">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/2.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/3.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/4.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/5.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/6.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/7.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/8.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/9.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/10.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/11.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/12.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/13.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/14.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/15.png">
-<meta property="og:updated_time" content="2019-11-26T14:35:21.056Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/7.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/9.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/10.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/11.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/12.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/13.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/14.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/15.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/16.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/17.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/18.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/19.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/20.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/21.png">
+<meta property="og:updated_time" content="2019-11-27T08:24:29.986Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AndroidStudio编写第一个so">
-<meta name="twitter:description" content="本文主要记录用AndroidStudio编写第一个so">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/1.png">
+<meta name="twitter:title" content="IDA破解第一个so">
+<meta name="twitter:description" content="本文主要记录用IDA破解第一个so">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/1.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -74,7 +80,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>AndroidStudio编写第一个so | Hexo</title>
+<title>IDA破解第一个so | Hexo</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -287,11 +293,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-AS编写等一个so" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-IDA破解第一个so" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/11/26/AS编写等一个so/" class="article-date">
-      <time datetime="2019-11-26T13:07:16.000Z" itemprop="datePublished">2019-11-26</time>
+      <a href="/2019/11/27/IDA破解第一个so/" class="article-date">
+      <time datetime="2019-11-27T06:45:12.000Z" itemprop="datePublished">2019-11-27</time>
 </a>
 
 
@@ -306,7 +312,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      AndroidStudio编写第一个so
+      IDA破解第一个so
     </h1>
   
 
@@ -333,66 +339,82 @@
           
         <p><excerpt in index | 首页摘要> </excerpt></p>
 <blockquote>
-<p>本文主要记录用AndroidStudio编写第一个so</p>
+<p>本文主要记录用IDA破解第一个so</p>
 </blockquote>
 <a id="more"></a> 
 <p><the rest of contents | 余下全文> </the></p>
 <blockquote>
-<p>打开AndroidStudio新建一个Android项目，在包里面建一个普通的java类，里面写上如图所示的代码。<br>里面有一个sayhello的方法和一个加载so库的静态初始化块。静态初始化块中的JniTest是我们提前给so库名。我们发现方法标红，是因为没有生成对应的头文件和so库，我们下一步就会完成这些</p>
+<p>首先下载工具IDA。<br>链接：<a href="https://pan.baidu.com/s/15uCX8o6tTSSelgG_RN7kBQ" target="_blank" rel="noopener">https://pan.baidu.com/s/15uCX8o6tTSSelgG_RN7kBQ</a><br>密码：ftie</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/1.png" heigtht="%60" width="50%"></p>
 <blockquote>
-<p>我们使用命令行在java目录下执行javah -d ../jni 包名.类名，会在java上一级目录中生成一个jni文件夹（该文件夹与java同级）,文件夹中存放的就是.h的头文件。</p>
+<p>本文所用到的Demo是上个博客所生成的so文件。<br>链接：<a href="https://pan.baidu.com/s/1vKC1SevvHfeI7f0d2c6IqQ" target="_blank" rel="noopener">https://pan.baidu.com/s/1vKC1SevvHfeI7f0d2c6IqQ</a><br>密码：u1an</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/2.png" heigtht="%60" width="50%"></p>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/3.png" heigtht="%60" width="50%"></p>
 <blockquote>
-<p>接着在jni文件夹中创建一个main.c文件，把.h的头文件导入进去，把sayhello方法在main.c中实现。</p>
+<p>我们首先使用apktool反编译，得到了反编译后的文件夹app-debug</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/4.png" heigtht="%60" width="50%"></p>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/1.png" heigtht="%60" width="50%"></p>
 <blockquote>
-<p>把下载的ndk环境与AndroidStudio关联起来，local.properties也会显示出ndk的路径。</p>
+<p>然后我们打开文件夹找到lib文件，可以看到里面有基于不同cpu的so文件。<br>因为我的机型是支持arm的所以我这里打开的是armeabi文件夹下的so，如果机型是x86模式的那么这里要打开x86模式下的libJniTest.so<br>armeabiv-v7a: 第7代及以上的 ARM 处理器。2011年15月以后的生产的大部分Android设备都使用它.<br>arm64-v8a: 第8代、64位ARM处理器，很少设备，三星 Galaxy S6是其中之一。<br>armeabi: 第5代、第6代的ARM处理器，早期的手机用的比较多。<br>x86: 平板、模拟器用得比较多。<br>x86_64: 64位的平板。</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/5.png" heigtht="%60" width="50%"></p>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/6.png" heigtht="%60" width="50%"></p>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/2.png" heigtht="%60" width="50%"></p>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/3.png" heigtht="%60" width="50%"></p>
 <blockquote>
-<p>打开app Module的build.gradle文件，在defaultConfig节点里添加以下代码 注意这里的moduleName，是我们在之前自己编写的类里面加载的so库名。</p>
+<p>我们现在打开下载好的的IDA，遇到的弹窗全部选择ok。我们用IDA打开so文件。</p>
 </blockquote>
-<pre><code>ndk {
-moduleName &quot;JniTest&quot;
-ldLibs &quot;log&quot;, &quot;z&quot;, &quot;m&quot;
-abiFilters &quot;armeabi&quot;, &quot;armeabi-v7a&quot;, &quot;x86&quot;
-}
-</code></pre><p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/7.png" heigtht="%60" width="50%"></p>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/4.png" heigtht="%60" width="50%"></p>
 <blockquote>
-<p>还要在gradle.properties里面加上这么一句话：android.useDeprecatedNdk=true</p>
+<p>我们按住shift+f12打开字符串窗口  这个窗口将会列举出so中所包含的所有字符串 我们只编写了一个字符串 所以这里只有一个hello byx! 如果打开的是x86的so这里还会有一些.so 但是字符串只有这一个。</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/8.png" heigtht="%60" width="50%"></p>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/5.png" heigtht="%60" width="50%"></p>
 <blockquote>
-<p>接下来直接rubuild project</p>
+<p>我们双击字符串点进去如图所示，我们可以看到字符串对应的内存地址00001DF8。</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/9.png" heigtht="%60" width="50%"></p>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/6.png" heigtht="%60" width="50%"></p>
 <blockquote>
-<p>发现出现了错误，修改gradle.properties里面这一句话：android.useDeprecatedNdk=true，按照如图所示修改，就成功了</p>
+<p>我们把鼠标放在hello byx上，点击工具栏里面的View-&gt;opensubview-&gt;hex dump</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/10.png" heigtht="%60" width="50%"></p>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/7.png" heigtht="%60" width="50%"></p>
 <blockquote>
-<p>可能出现这种错误，在jni文件夹下建一个.c的空文件夹就可以解决。（该错误时不时的会出现，具体原因以后再把它搞清楚）</p>
+<p>然后我们可以看到对应内存地址上的内容。关于字符对应的16进制可以搜索ascii表，找到字符对应的16进制。</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/11.png" heigtht="%60" width="50%"></p>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/8.png" heigtht="%60" width="50%"></p>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/9.png" heigtht="%60" width="50%"></p>
 <blockquote>
-<p>我们rebuild一下就可以生成so库了 生成的so在项目的app\build\intermediates\ndk\debug\lib路径下</p>
+<p>我们尝试把hello byx 改为hello pzb。我们利用在线ascii转换工具分别转换这两个字符串。</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/12.png" heigtht="%60" width="50%"></p>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/10.png" heigtht="%60" width="50%"></p>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/11.png" heigtht="%60" width="50%"></p>
 <blockquote>
-<p>我们可以在main目录下建立一个jniLIB,然后把lib里面的文件复制过来。</p>
+<p>我们在IDA中右键选择编辑。将62 79 78改为 70 7a 62</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/13.png" heigtht="%60" width="50%"></p>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/12.png" heigtht="%60" width="50%"></p>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/13.png" heigtht="%60" width="50%"></p>
 <blockquote>
-<p>so库生成完毕，现在我们在Mainactivity中打印MyJBI中的sayhello()。成功实现！</p>
+<p>然后我们再右键选择apply changes</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/14.png" heigtht="%60" width="50%"></p>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/AS%E7%BC%96%E5%86%99so/15.png" heigtht="%60" width="50%"></p>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/14.png" heigtht="%60" width="50%"></p>
+<blockquote>
+<p>我们选择edit-&gt;plugins-&gt;modifyfile来保存修改后的so。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/15.png" heigtht="%60" width="50%"></p>
+<blockquote>
+<p>我们确定修改并将修改后的so单独的放在一个位置。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/16.png" heigtht="%60" width="50%"></p>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/17.png" heigtht="%60" width="50%"></p>
+<blockquote>
+<p>我们将IDA关闭，然后将修改后的so替换armeabi文件夹和armeabi-v7a文件下的so文件。<br>然后我们重新打包app-debug。然后打开AndroidKiller为打包好的apk进行签名。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/18.png" heigtht="%60" width="50%"></p>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/19.png" heigtht="%60" width="50%"></p>
+<blockquote>
+<p>然后我们使用adb install D:\apk\破解so\test_sign.apk安装apk </p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/20.png" heigtht="%60" width="50%"></p>
+<blockquote>
+<p>我们打开AndroidStudio查看打印的log。成功修改！</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso/21.png" heigtht="%60" width="50%"></p>
 
       
     </div>
@@ -401,13 +423,13 @@ abiFilters &quot;armeabi&quot;, &quot;armeabi-v7a&quot;, &quot;x86&quot;
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/11/26/AS编写等一个so/">AndroidStudio编写第一个so</a></p>
+        <p><span>本文标题:</span><a href="/2019/11/27/IDA破解第一个so/">IDA破解第一个so</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Antid0t3</a></p>
-        <p><span>发布时间:</span>2019-11-26, 21:07:16</p>
-        <p><span>最后更新:</span>2019-11-26, 22:35:21</p>
+        <p><span>发布时间:</span>2019-11-27, 14:45:12</p>
+        <p><span>最后更新:</span>2019-11-27, 16:24:29</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/11/26/AS编写等一个so/" title="AndroidStudio编写第一个so">https://antid0t3.github.io/2019/11/26/AS编写等一个so/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://antid0t3.github.io/2019/11/26/AS编写等一个so/　　作者: Antid0t3" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/11/27/IDA破解第一个so/" title="IDA破解第一个so">https://antid0t3.github.io/2019/11/27/IDA破解第一个so/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://antid0t3.github.io/2019/11/27/IDA破解第一个so/　　作者: Antid0t3" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -419,16 +441,10 @@ abiFilters &quot;armeabi&quot;, &quot;armeabi-v7a&quot;, &quot;x86&quot;
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/11/27/apktool的使用/">
-                    apktool的使用
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/11/24/Smali代码中插入Log/">
-                    Smali代码中插入Log
+                <a href="/2019/11/27/apktool的使用/">
+                    apktool的使用
                 </a>
             </div>
         
@@ -476,7 +492,7 @@ abiFilters &quot;armeabi&quot;, &quot;armeabi-v7a&quot;, &quot;x86&quot;
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"AndroidStudio编写第一个so　| Hexo　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"IDA破解第一个so　| Hexo　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -496,15 +512,13 @@ abiFilters &quot;armeabi&quot;, &quot;armeabi-v7a&quot;, &quot;x86&quot;
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/11/27/apktool的使用/" title="上一篇: apktool的使用">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/11/24/Smali代码中插入Log/" title="下一篇: Smali代码中插入Log">
+            <a href="/2019/11/27/apktool的使用/" title="下一篇: apktool的使用">
                 <i class="fa fa-angle-right"></i>
             </a>
         

@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[IDA破解第一个so]]></title>
+    <url>%2F2019%2F11%2F27%2FIDA%E7%A0%B4%E8%A7%A3%E7%AC%AC%E4%B8%80%E4%B8%AAso%2F</url>
+    <content type="text"><![CDATA[本文主要记录用IDA破解第一个so 首先下载工具IDA。链接：https://pan.baidu.com/s/15uCX8o6tTSSelgG_RN7kBQ密码：ftie 本文所用到的Demo是上个博客所生成的so文件。链接：https://pan.baidu.com/s/1vKC1SevvHfeI7f0d2c6IqQ密码：u1an 我们首先使用apktool反编译，得到了反编译后的文件夹app-debug 然后我们打开文件夹找到lib文件，可以看到里面有基于不同cpu的so文件。因为我的机型是支持arm的所以我这里打开的是armeabi文件夹下的so，如果机型是x86模式的那么这里要打开x86模式下的libJniTest.soarmeabiv-v7a: 第7代及以上的 ARM 处理器。2011年15月以后的生产的大部分Android设备都使用它.arm64-v8a: 第8代、64位ARM处理器，很少设备，三星 Galaxy S6是其中之一。armeabi: 第5代、第6代的ARM处理器，早期的手机用的比较多。x86: 平板、模拟器用得比较多。x86_64: 64位的平板。 我们现在打开下载好的的IDA，遇到的弹窗全部选择ok。我们用IDA打开so文件。 我们按住shift+f12打开字符串窗口 这个窗口将会列举出so中所包含的所有字符串 我们只编写了一个字符串 所以这里只有一个hello byx! 如果打开的是x86的so这里还会有一些.so 但是字符串只有这一个。 我们双击字符串点进去如图所示，我们可以看到字符串对应的内存地址00001DF8。 我们把鼠标放在hello byx上，点击工具栏里面的View-&gt;opensubview-&gt;hex dump 然后我们可以看到对应内存地址上的内容。关于字符对应的16进制可以搜索ascii表，找到字符对应的16进制。 我们尝试把hello byx 改为hello pzb。我们利用在线ascii转换工具分别转换这两个字符串。 我们在IDA中右键选择编辑。将62 79 78改为 70 7a 62 然后我们再右键选择apply changes 我们选择edit-&gt;plugins-&gt;modifyfile来保存修改后的so。 我们确定修改并将修改后的so单独的放在一个位置。 我们将IDA关闭，然后将修改后的so替换armeabi文件夹和armeabi-v7a文件下的so文件。然后我们重新打包app-debug。然后打开AndroidKiller为打包好的apk进行签名。 然后我们使用adb install D:\apk\破解so\test_sign.apk安装apk 我们打开AndroidStudio查看打印的log。成功修改！]]></content>
+      <categories>
+        <category>网络安全</category>
+      </categories>
+      <tags>
+        <tag>安卓逆向</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[apktool的使用]]></title>
     <url>%2F2019%2F11%2F27%2Fapktool%E7%9A%84%E4%BD%BF%E7%94%A8%2F</url>
     <content type="text"><![CDATA[本文主要介绍一下apktool的使用 一、下载最新版apktool,官网链接:https://ibotpeaches.github.io/Apktool/ 二、配置apktool1.将下载好的apktool重命名为apktool.jar 并下载apktool.bat 下载链接：https://pan.baidu.com/s/1ClEDZ1yiUobG46sQtaSY8Q 密码：gofa2.将下载的apktool重命名为apktoool.jar 并把apktool.bat一起放到C:\Windows目录下 按住快捷键win+R,输入cmd快捷键打开cmd命令窗口,输入apktool,配置成功显示如下: apktool 常用的两个命令如下解包：apktool d test.apk重新打包：apktool b test -o testc.apk 解压的text文件夹是解包后的文件夹 在这里我们可以修改apk里面的一些文件 那么testc.apk就是重打包后的apk以下以上一篇博客AndroidStudio编写第一个so编写出的app-debug.apk测试为例子 1.cd 进入apk所在目录 输入解包命令解包成功会在当前目录下生成app-debug文件夹apktool d app-debug.apk 2.输入重打包命令 -o是重命名apktool b app-debug -o testc.apk 打开命令窗口输入adb install apk文件 发现安装失败提示了Failure [INSTALL_FAILED_TEST_ONLY]这个错误 这个错误有两个解决办法：第一种：在安装命令中加入-t.即adb install -t D:\AndroidStudioProjects\TestJni2\app\build\outputs\apk\debug\testc.apk 第二种：修改AndroidManifest.xml文件，把android:testOnly=”true”改成android:testOnly=”false”或者删掉这一行。 我们就用第一种方法安装，发现安装又出现了错误：Failure [INSTALL_PARSE_FAILED_NO_CERTIFICATES]它提示没有签名。我们打开AndroidKiller-工具-apk签名，把需要签名的testc.apk拖进去，进行签名 签名完成后，在testc.apk同目录的文件夹下生成一个签名后的apk文件 签名后我们再进行apk的安装，这次就顺利安装成功！]]></content>
@@ -32,7 +43,6 @@
       </categories>
       <tags>
         <tag>安卓逆向</tag>
-        <tag>基础知识</tag>
       </tags>
   </entry>
   <entry>
@@ -44,13 +54,12 @@
       </categories>
       <tags>
         <tag>安卓逆向</tag>
-        <tag>基础知识</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[切水果大战]]></title>
-    <url>%2F2019%2F11%2F18%2F%E5%88%87%E6%B0%B4%E6%9E%9C%E5%A4%A7%E6%88%98%2F</url>
-    <content type="text"><![CDATA[本文主要记录破解切水果大战游戏的思路。 拿到这一款切水果游戏，首先安装到手机上玩一下。命令：adb install apk文件体验之后发现一般的道具消费都会提示充值金币，没有充值的话会提示失败我们尝试破解 将APK文件拖到Android Killer 进行反编译，我们看到反编译后的文件我们尝试进行关键字搜索“失败”我们会发现关于支付的代码。 我们浏览代码，可以看java代码，如果对smali代码熟练的话直接看smali 代码，我发现了支付失败的方法、支付成功的方法、支付取消的方法。 接下来我们尝试用三种方法进行破解第一种方法：我们找到了代码中支付失败、支付取消和支付成功的代码，我们可以直接将支付失败和支付取消的方法中的代码全部改为支付成功的代码。第二种方法：第一种方法是直接改支付失败里面的代码，将他们改成支付成功，这是一种思路，我们现在尝试第二种方法，尝试看一下支付失败的代码是在哪里被调用的。我们尝试搜索payResultFalse()方法，搜索到调用payResultFalse()的文件，如图所示，我们发现了调用支付失败和支付成功的位置，我们把调用支付失败的方法改成调用支付成功的方法。破解成功。第三种方法，我们修改switch分支，把:pswitch_1修改为:pswitch_0，这样代码只会跳转到支付成功的方法处，破解成功。]]></content>
+    <title><![CDATA[火柴人联盟]]></title>
+    <url>%2F2019%2F11%2F18%2F%E7%81%AB%E6%9F%B4%E4%BA%BA%2F</url>
+    <content type="text"><![CDATA[本文主要记录破解火柴人联盟游戏的思路。 安装火柴人游戏玩一下，发现游戏里面有商城，商城里面提供了需要购买的道具，还有一些礼包也需要购买，英雄也需要购买，支付方式分为了话费支付、三方支付。 我们尝试一下搜索一下关键的字符：支付失败、支付成功我们在查询过程中就可以看到支付信息代码所在的文件目录，我们一一打开，发现有短信、联通、移动、电信几种支付方式 我们可以看到关于支付信息的代码 我们先打开联通的支付，smali代码如下，就是一个简单的switch语句，我们将支付取消和支付失败的switch语句调用全部改为支付成功的情况。 我们在点击电信的支付信息，可以看到电信相关的支付成功的方法、支付失败的方法、支付取消的方法。我们使用最简单的方法，将支付失败和支付取消里面的代码全部改为支付成功的代码 我们在看一下移动支付的代码，和联通的基本一样，也是switch语句，我们还是果断使用switch大法，成功解决。 最后还有一部分去广告，同意支付接口的一系列操作后面再补充。]]></content>
       <categories>
         <category>网络安全</category>
       </categories>
@@ -60,9 +69,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[火柴人联盟]]></title>
-    <url>%2F2019%2F11%2F18%2F%E7%81%AB%E6%9F%B4%E4%BA%BA%2F</url>
-    <content type="text"><![CDATA[本文主要记录破解火柴人联盟游戏的思路。 安装火柴人游戏玩一下，发现游戏里面有商城，商城里面提供了需要购买的道具，还有一些礼包也需要购买，英雄也需要购买，支付方式分为了话费支付、三方支付。 我们尝试一下搜索一下关键的字符：支付失败、支付成功我们在查询过程中就可以看到支付信息代码所在的文件目录，我们一一打开，发现有短信、联通、移动、电信几种支付方式 我们可以看到关于支付信息的代码 我们先打开联通的支付，smali代码如下，就是一个简单的switch语句，我们将支付取消和支付失败的switch语句调用全部改为支付成功的情况。 我们在点击电信的支付信息，可以看到电信相关的支付成功的方法、支付失败的方法、支付取消的方法。我们使用最简单的方法，将支付失败和支付取消里面的代码全部改为支付成功的代码 我们在看一下移动支付的代码，和联通的基本一样，也是switch语句，我们还是果断使用switch大法，成功解决。 最后还有一部分去广告，同意支付接口的一系列操作后面再补充。]]></content>
+    <title><![CDATA[切水果大战]]></title>
+    <url>%2F2019%2F11%2F18%2F%E5%88%87%E6%B0%B4%E6%9E%9C%E5%A4%A7%E6%88%98%2F</url>
+    <content type="text"><![CDATA[本文主要记录破解切水果大战游戏的思路。 拿到这一款切水果游戏，首先安装到手机上玩一下。命令：adb install apk文件体验之后发现一般的道具消费都会提示充值金币，没有充值的话会提示失败我们尝试破解 将APK文件拖到Android Killer 进行反编译，我们看到反编译后的文件我们尝试进行关键字搜索“失败”我们会发现关于支付的代码。 我们浏览代码，可以看java代码，如果对smali代码熟练的话直接看smali 代码，我发现了支付失败的方法、支付成功的方法、支付取消的方法。 接下来我们尝试用三种方法进行破解第一种方法：我们找到了代码中支付失败、支付取消和支付成功的代码，我们可以直接将支付失败和支付取消的方法中的代码全部改为支付成功的代码。第二种方法：第一种方法是直接改支付失败里面的代码，将他们改成支付成功，这是一种思路，我们现在尝试第二种方法，尝试看一下支付失败的代码是在哪里被调用的。我们尝试搜索payResultFalse()方法，搜索到调用payResultFalse()的文件，如图所示，我们发现了调用支付失败和支付成功的位置，我们把调用支付失败的方法改成调用支付成功的方法。破解成功。第三种方法，我们修改switch分支，把:pswitch_1修改为:pswitch_0，这样代码只会跳转到支付成功的方法处，破解成功。]]></content>
       <categories>
         <category>网络安全</category>
       </categories>
