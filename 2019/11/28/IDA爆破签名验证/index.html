@@ -15,27 +15,42 @@
 
 
 
-<meta name="description" content="本文主要介绍在Smali代码中插入Log。">
+<meta name="description" content="本文主要记录用IDA爆破签名验证。">
 <meta name="keywords" content="安卓逆向">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Smali代码中插入Log">
-<meta property="og:url" content="https://antid0t3.github.io/2019/11/24/Smali代码中插入Log/index.html">
+<meta property="og:title" content="IDA爆破签名验证">
+<meta property="og:url" content="https://antid0t3.github.io/2019/11/28/IDA爆破签名验证/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="本文主要介绍在Smali代码中插入Log。">
+<meta property="og:description" content="本文主要记录用IDA爆破签名验证。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/1.png?raw=true">
-<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/2.png?raw=true">
-<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/3.png?raw=true">
-<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/4.png?raw=true">
-<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/5.png?raw=true">
-<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/6.png?raw=true">
-<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/7.png?raw=true">
-<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/8.png?raw=true">
-<meta property="og:updated_time" content="2019-11-27T08:24:40.865Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/9.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/7.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/10.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/11.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/12.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/13.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/14.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/15.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/16.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/17.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/18.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/19.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/20.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/21.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/22.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/23.png">
+<meta property="og:updated_time" content="2019-11-28T07:40:12.324Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Smali代码中插入Log">
-<meta name="twitter:description" content="本文主要介绍在Smali代码中插入Log。">
-<meta name="twitter:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/1.png?raw=true">
+<meta name="twitter:title" content="IDA爆破签名验证">
+<meta name="twitter:description" content="本文主要记录用IDA爆破签名验证。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/1.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -67,7 +82,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Smali代码中插入Log | Hexo</title>
+<title>IDA爆破签名验证 | Hexo</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -280,11 +295,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-Smali代码中插入Log" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-IDA爆破签名验证" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/11/24/Smali代码中插入Log/" class="article-date">
-      <time datetime="2019-11-24T06:44:34.000Z" itemprop="datePublished">2019-11-24</time>
+      <a href="/2019/11/28/IDA爆破签名验证/" class="article-date">
+      <time datetime="2019-11-28T05:58:05.000Z" itemprop="datePublished">2019-11-28</time>
 </a>
 
 
@@ -299,7 +314,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Smali代码中插入Log
+      IDA爆破签名验证
     </h1>
   
 
@@ -324,72 +339,87 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><excerpt in index | 首页摘要></excerpt></p>
+        <p><excerpt in index | 首页摘要> </excerpt></p>
 <blockquote>
-<p>本文主要介绍在Smali代码中插入Log。</p>
+<p>本文主要记录用IDA爆破签名验证。</p>
 </blockquote>
-<a id="more"></a>
-<the rest of contents | 余下全文>
+<a id="more"></a> 
+<p><the rest of contents | 余下全文> </the></p>
+<blockquote>
+<p>爆破的Demo是一款黑宝宝apk，他设置了签名验证，如果你反编译后重新打包签名，他会将该签名与原签名就行对比，你安装在手机上之后一打开程序则会退出。看一下代码发现签名验证是写在so里面的。接下来爆破他的签名验证。<br>apk链接：<a href="https://pan.baidu.com/s/1h6pX2ARE3qtiKiYbcnJ-3g" target="_blank" rel="noopener">https://pan.baidu.com/s/1h6pX2ARE3qtiKiYbcnJ-3g</a> 密码：duv5</p>
+</blockquote>
+<blockquote>
+<p>用apktool解包apk,然后用IDA打开libJniTest.so。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/1.png" heigtht="%60" width="50%"></p>
+<blockquote>
+<p>文件中有Imports表和Exports表<br>Imports是导入表，so中调用的外面的函数。<br>Exports是导入表，so中能让外部调用的函数。<br>我们在java层可以知道调用了一个native层的函数check，然后Exports表记录了so中被外部调用的函数，而且我们清楚so中的函数都是以java_包名_类名_方法名的格式所命名。那么我们直接在Exports表中搜索check,就可以搜到该函数。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/2.png" heigtht="%60" width="50%"></p>
+<blockquote>
+<p>我们找到check函数后双击它进入check方法。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/3.png" heigtht="%60" width="50%"></p>
+<blockquote>
+<p>我们按F5将汇编语言变为c语言。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/4.png" heigtht="%60" width="50%"></p>
+<blockquote>
+<p>我们发现存在一些乱码，我们按alt+a键，将如图所示编码改为UTF-8。点击ok后，再重新刷新之后就可以发现乱码没有了。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/5.png" heigtht="%60" width="50%"></p>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/6.png" heigtht="%60" width="50%"></p>
+<blockquote>
+<p>乱码问题虽然解决了 但是下面的代码可读性很差 此时需要导入jni.h文件,点File-&gt;Load file-&gt;Parse C header file,找到jni.h所在位置点击打开,此时显示Compilation successful导入成功。<br>下载链接：<a href="https://pan.baidu.com/s/1n16NEx67zLHfGtVpU-CKAA" target="_blank" rel="noopener">https://pan.baidu.com/s/1n16NEx67zLHfGtVpU-CKAA</a> 密码：7xg6</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/8.png" heigtht="%60" width="50%"></p>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/9.png" heigtht="%60" width="50%"></p>
+<blockquote>
+<p>我选中第一个int,右键选择Convert to struct*，选择_JNIEnv,点击ok,我们发现有一些函数已经显示出来了。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/7.png" heigtht="%60" width="50%"></p>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/10.png" heigtht="%60" width="50%"></p>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/11.png" heigtht="%60" width="50%"></p>
+<blockquote>
+<p>但是函数的可读性还是差了一些，我们选中函数GetStringUTFChars,右键选择force call type，其他的函数也同样这样，之后我们发现代码的可读性提高了。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/12.png" heigtht="%60" width="50%"></p>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/13.png" heigtht="%60" width="50%"></p>
+<blockquote>
+<p>我们点选中a1,然后按n键重命名为env，至于为什么这样做，不是这节课的重点，以后的博客中会讲到。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/14.png" heigtht="%60" width="50%"></p>
+<blockquote>
+<p>现在我们回到汇编视图，按空格键就可以切换到图形视图。图形视图我们可以一目了然的看清代码结构，我们也可以按住ctrl滑鼠标的滑轮来调节视图的大小。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/15.png" heigtht="%60" width="50%"></p>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/16.png" heigtht="%60" width="50%"></p>
+<blockquote>
+<p>我们可以看到判断签名的代码。调用strcmp函数来比较现在的签名和原来的签名是否一致，如一致R0标志位置为0，比较标志位置是否为0，为0程序走左视图，不为0走右视图。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/17.png" heigtht="%60" width="50%"></p>
+<blockquote>
+<p>我们想要让他通过，很显然，我们把BNE(不等于0)修改为BEQ(等于0)，这样我们修改完签名后，程序就会走左视图，就不会因为签名验证不能正常运行程序。<br>我们鼠标选中BNE，然后按空格键切换回汇编视图，选中BNE,然后点击View-&gt;open subview-&gt;hex dump。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/18.png" heigtht="%60" width="50%"></p>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/19.png" heigtht="%60" width="50%"></p>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/20.png" heigtht="%60" width="50%"></p>
+<blockquote>
+<p>然后我们可以看到BNE对应的16进制，我们只需要将BNE的16进制改为BEQ的16进行就成功了。BNE是D1,BEQ是D0，我们修改后保存就修改成功。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/21.png" heigtht="%60" width="50%"></p>
+<blockquote>
+<p>返回到汇编视图也可以看到修改成功。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/22.png" heigtht="%60" width="50%"></p>
+<blockquote>
+<p>我们保存修改后的so文件。我们将修改后的so文件替换掉原先armeabi和armeabi-v7a里面的so文件。</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/23.png" heigtht="%60" width="50%"></p>
+<blockquote>
+<p>重新打包，签名，安装到手机就可以正常的运行了。</p>
+</blockquote>
 
-<blockquote>
-<p>这里我编写了一个Demo 从下面的代码中可以看出我在onCreate方法中执行了三个函数 函数名分别是fun1 fun2和fun3 并且在下面加入一条Log 目的是为了打印出函数fun1的返回值 因为Log.i的两个参数都必须是String类型  所以这里把int类型的fun1这个函数通过String.valueOf函数转换成String类型</p>
-</blockquote>
-<pre><code>public class MainActivity extends AppCompatActivity {
-@Override
-protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
-    fun1();
-    fun2();
-    fun3();
-    Log.i(&quot;这个值是&quot;,String.valueOf(fun1()));
-
-}
-public int fun1()
-{
-    int value = Test.value;
-    return value;
-}
-public int fun2()
-{
-    int value2 = Test.value2;
-    return value2;
-}
-public String fun3()
-{
-    String str = Test.str;
-    String str2 = Test.str2;
-    int value3 = Test.value3;
-    return str2;
-} 
-}
-</code></pre><blockquote>
-<p>接下来我们需要完成以下三个任务：<br>任务一<br>添加Log打印出fun2,fun3的值 (其实就是函数的返回值)<br>任务二<br>添加Log打印出fun3里面String类型str的值<br>任务三<br>添加Log打印出fun3里面int类型value3的值</p>
-</blockquote>
-<blockquote>
-<p>首先我们来完成任务一。我们先来打印fun2的值，我们发现原来已经打印过fun1的值了，fun2和fun1函数返回值类型都一样，都需要调用String.valueOf()来转化为int类型，那我们打印fun2就很简单了，只需要找到fun1的打印语句的代码，换成fun2就成功了。</p>
-</blockquote>
-<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/1.png?raw=true" height="60%" width="50%"></p>
-<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/2.png?raw=true" height="60%" width="50%"></p>
-<blockquote>
-<p>我们现在来打印fun3的值，我们发现fun3的返回值直接就是String类型的，我们只需要将上面fun1和fun2的代码中的fun1改为fun3，并将返回值类型改为String，并且将类型转换的代码删掉就成功了。任务一就成功完成了</p>
-</blockquote>
-<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/3.png?raw=true" height="60%" width="50%"></p>
-<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/4.png?raw=true" height="60%" width="50%"></p>
-<blockquote>
-<p>现在来完成第二个任务，打印fun3中String类型的str的值。我们直接找到fun3方法中的str值，他一定会将str的值放到一个寄存器中，我们找到这个寄存器，然后打印出他的值就成功了，顺利完成任务二。</p>
-</blockquote>
-<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/5.png?raw=true" height="60%" width="50%"></p>
-<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/6.png?raw=true" height="60%" width="50%"></p>
-<blockquote>
-<p>现在我们来完成任务三，我们思路跟任务二相同，在fun3方法中找到存放value3的寄存器，然后尝试把他打印出来。</p>
-</blockquote>
-<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/7.png?raw=true" height="60%" width="50%"></p>
-<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/Smali%E4%BB%A3%E7%A0%81%E4%B8%AD%E6%8F%92%E5%85%A5Log/8.png?raw=true" height="60%" width="50%"></p>
-<blockquote>
-<p>本节课从简单的插入Log到从smali代码中打印变量的值,然后从中牵扯到了类型转换,最后通过完成三条任务为主线,每一个例子 每一个点都很精致并且实用,这节课的内容可以留着当做Log方面参考文档 虽然本节课的篇幅比较长 但是所讲的所有东西,最好自己能有一些心得。</p>
-</blockquote>
-</the>
       
     </div>
     
@@ -397,13 +427,13 @@ public String fun3()
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/11/24/Smali代码中插入Log/">Smali代码中插入Log</a></p>
+        <p><span>本文标题:</span><a href="/2019/11/28/IDA爆破签名验证/">IDA爆破签名验证</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Antid0t3</a></p>
-        <p><span>发布时间:</span>2019-11-24, 14:44:34</p>
-        <p><span>最后更新:</span>2019-11-27, 16:24:40</p>
+        <p><span>发布时间:</span>2019-11-28, 13:58:05</p>
+        <p><span>最后更新:</span>2019-11-28, 15:40:12</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/11/24/Smali代码中插入Log/" title="Smali代码中插入Log">https://antid0t3.github.io/2019/11/24/Smali代码中插入Log/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://antid0t3.github.io/2019/11/24/Smali代码中插入Log/　　作者: Antid0t3" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/11/28/IDA爆破签名验证/" title="IDA爆破签名验证">https://antid0t3.github.io/2019/11/28/IDA爆破签名验证/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://antid0t3.github.io/2019/11/28/IDA爆破签名验证/　　作者: Antid0t3" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -415,16 +445,10 @@ public String fun3()
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/11/26/AS编写等一个so/">
-                    AndroidStudio编写第一个so
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/11/23/动态调试Smali代码/">
-                    动态调试Smali代码
+                <a href="/2019/11/28/常见的几种编码方式/">
+                    常见的几种编码方式
                 </a>
             </div>
         
@@ -472,7 +496,7 @@ public String fun3()
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Smali代码中插入Log　| Hexo　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"IDA爆破签名验证　| Hexo　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -492,15 +516,13 @@ public String fun3()
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/11/26/AS编写等一个so/" title="上一篇: AndroidStudio编写第一个so">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/11/23/动态调试Smali代码/" title="下一篇: 动态调试Smali代码">
+            <a href="/2019/11/28/常见的几种编码方式/" title="下一篇: 常见的几种编码方式">
                 <i class="fa fa-angle-right"></i>
             </a>
         
