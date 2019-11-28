@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[IDA爆破账号密码]]></title>
+    <url>%2F2019%2F11%2F28%2FIDA%E7%88%86%E7%A0%B4%E8%B4%A6%E5%8F%B7%E5%AF%86%E7%A0%81%2F</url>
+    <content type="text"><![CDATA[本文主要记录用IDA爆破账号密码。 本文是接着上一篇爆破签名验证的工作进一步深入，尝试爆破一下账号和密码。前面的处理代码的步骤完全一致，我们不再接着赘述，我们接着尝试爆破一下他的账号和密码。apk链接：https://pan.baidu.com/s/1h6pX2ARE3qtiKiYbcnJ-3g 密码：duv5 我们查看汇编界面的图形界面，我们发现上次是修改一个判断绕过签名验证，同理我们是否能修改下面代码中的判断语句来随便输入账号和密码就能登录成功呢？ 我们看到上图中两个判断语句，我们先修改第一个，将BNE改为BEQ。 再修改第二个判断的语句，将BEQ改为BNE。 保存so文件，然后替换掉原先armeabi和armeabi-v7a里面的so文件。 然后重新打包，签名安装。 总结一下：首先要找到java所调用的native层的方法，再通过汇编代码、c理解代码逻辑，当中可以使用汇编的图形界面，可以快速帮助我们理解代码结构。往往需要修改的地方都是一些判断的语句，注意一下这些地方，可以很快的帮助到我们。特别感谢吾爱破解论坛，我也是跟着论坛中的教学一步一步学习的，希望可以一步一个脚印把知识学扎实。]]></content>
+      <categories>
+        <category>网络安全</category>
+      </categories>
+      <tags>
+        <tag>安卓逆向</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[IDA爆破签名验证]]></title>
     <url>%2F2019%2F11%2F28%2FIDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81%2F</url>
     <content type="text"><![CDATA[本文主要记录用IDA爆破签名验证。 爆破的Demo是一款黑宝宝apk，他设置了签名验证，如果你反编译后重新打包签名，他会将该签名与原签名就行对比，你安装在手机上之后一打开程序则会退出。看一下代码发现签名验证是写在so里面的。接下来爆破他的签名验证。apk链接：https://pan.baidu.com/s/1h6pX2ARE3qtiKiYbcnJ-3g 密码：duv5 用apktool解包apk,然后用IDA打开libJniTest.so。 文件中有Imports表和Exports表Imports是导入表，so中调用的外面的函数。Exports是导入表，so中能让外部调用的函数。我们在java层可以知道调用了一个native层的函数check，然后Exports表记录了so中被外部调用的函数，而且我们清楚so中的函数都是以java_包名_类名_方法名的格式所命名。那么我们直接在Exports表中搜索check,就可以搜到该函数。 我们找到check函数后双击它进入check方法。 我们按F5将汇编语言变为c语言。 我们发现存在一些乱码，我们按alt+a键，将如图所示编码改为UTF-8。点击ok后，再重新刷新之后就可以发现乱码没有了。 乱码问题虽然解决了 但是下面的代码可读性很差 此时需要导入jni.h文件,点File-&gt;Load file-&gt;Parse C header file,找到jni.h所在位置点击打开,此时显示Compilation successful导入成功。下载链接：https://pan.baidu.com/s/1n16NEx67zLHfGtVpU-CKAA 密码：7xg6 我选中第一个int,右键选择Convert to struct*，选择_JNIEnv,点击ok,我们发现有一些函数已经显示出来了。 但是函数的可读性还是差了一些，我们选中函数GetStringUTFChars,右键选择force call type，其他的函数也同样这样，之后我们发现代码的可读性提高了。 我们点选中a1,然后按n键重命名为env，至于为什么这样做，不是这节课的重点，以后的博客中会讲到。 现在我们回到汇编视图，按空格键就可以切换到图形视图。图形视图我们可以一目了然的看清代码结构，我们也可以按住ctrl滑鼠标的滑轮来调节视图的大小。 我们可以看到判断签名的代码。调用strcmp函数来比较现在的签名和原来的签名是否一致，如一致R0标志位置为0，比较标志位置是否为0，为0程序走左视图，不为0走右视图。 我们想要让他通过，很显然，我们把BNE(不等于0)修改为BEQ(等于0)，这样我们修改完签名后，程序就会走左视图，就不会因为签名验证不能正常运行程序。我们鼠标选中BNE，然后按空格键切换回汇编视图，选中BNE,然后点击View-&gt;open subview-&gt;hex dump。 然后我们可以看到BNE对应的16进制，我们只需要将BNE的16进制改为BEQ的16进行就成功了。BNE是D1,BEQ是D0，我们修改后保存就修改成功。 返回到汇编视图也可以看到修改成功。 我们保存修改后的so文件。我们将修改后的so文件替换掉原先armeabi和armeabi-v7a里面的so文件。 重新打包，签名，安装到手机就可以正常的运行了。]]></content>
