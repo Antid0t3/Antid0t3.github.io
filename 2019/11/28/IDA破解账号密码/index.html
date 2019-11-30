@@ -15,42 +15,22 @@
 
 
 
-<meta name="description" content="本文主要记录用IDA爆破签名验证。">
+<meta name="description" content="本文主要记录用IDA破解账号密码。">
 <meta name="keywords" content="安卓逆向">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IDA爆破签名验证">
-<meta property="og:url" content="https://antid0t3.github.io/2019/11/28/IDA爆破签名验证/index.html">
+<meta property="og:title" content="IDA破解账号密码">
+<meta property="og:url" content="https://antid0t3.github.io/2019/11/28/IDA破解账号密码/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="本文主要记录用IDA爆破签名验证。">
+<meta property="og:description" content="本文主要记录用IDA破解账号密码。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/2.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/3.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/4.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/5.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/6.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/8.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/9.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/7.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/10.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/11.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/12.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/13.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/14.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/15.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/16.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/17.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/18.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/19.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/20.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/21.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/22.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/23.png">
-<meta property="og:updated_time" content="2019-11-28T07:40:12.324Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%94%A8%E6%88%B7%E5%90%8D%E5%92%8C%E5%AF%86%E7%A0%81/1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%94%A8%E6%88%B7%E5%90%8D%E5%92%8C%E5%AF%86%E7%A0%81/2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%94%A8%E6%88%B7%E5%90%8D%E5%92%8C%E5%AF%86%E7%A0%81/3.png">
+<meta property="og:updated_time" content="2019-11-30T02:57:27.183Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IDA爆破签名验证">
-<meta name="twitter:description" content="本文主要记录用IDA爆破签名验证。">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/1.png">
+<meta name="twitter:title" content="IDA破解账号密码">
+<meta name="twitter:description" content="本文主要记录用IDA破解账号密码。">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%94%A8%E6%88%B7%E5%90%8D%E5%92%8C%E5%AF%86%E7%A0%81/1.png">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -82,7 +62,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>IDA爆破签名验证 | Hexo</title>
+<title>IDA破解账号密码 | Hexo</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -295,11 +275,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-IDA爆破签名验证" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-IDA破解账号密码" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/11/28/IDA爆破签名验证/" class="article-date">
-      <time datetime="2019-11-28T05:58:05.000Z" itemprop="datePublished">2019-11-28</time>
+      <a href="/2019/11/28/IDA破解账号密码/" class="article-date">
+      <time datetime="2019-11-28T07:43:16.000Z" itemprop="datePublished">2019-11-28</time>
 </a>
 
 
@@ -314,7 +294,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      IDA爆破签名验证
+      IDA破解账号密码
     </h1>
   
 
@@ -341,83 +321,33 @@
           
         <p><excerpt in index | 首页摘要> </excerpt></p>
 <blockquote>
-<p>本文主要记录用IDA爆破签名验证。</p>
+<p>本文主要记录用IDA破解账号密码。</p>
 </blockquote>
 <a id="more"></a> 
 <p><the rest of contents | 余下全文> </the></p>
 <blockquote>
-<p>爆破的Demo是一款黑宝宝apk，他设置了签名验证，如果你反编译后重新打包签名，他会将该签名与原签名就行对比，你安装在手机上之后一打开程序则会退出。看一下代码发现签名验证是写在so里面的。接下来爆破他的签名验证。<br>apk链接：<a href="https://pan.baidu.com/s/1h6pX2ARE3qtiKiYbcnJ-3g" target="_blank" rel="noopener">https://pan.baidu.com/s/1h6pX2ARE3qtiKiYbcnJ-3g</a> 密码：duv5</p>
+<p>本文是接着上一篇爆破签名验证的工作进一步深入，尝试爆破一下账号和密码。前面的处理代码的步骤完全一致，我们不再接着赘述，我们接着尝试爆破一下他的账号和密码。<br>apk链接：<a href="https://pan.baidu.com/s/1h6pX2ARE3qtiKiYbcnJ-3g" target="_blank" rel="noopener">https://pan.baidu.com/s/1h6pX2ARE3qtiKiYbcnJ-3g</a> 密码：duv5</p>
 </blockquote>
 <blockquote>
-<p>用apktool解包apk,然后用IDA打开libJniTest.so。</p>
+<p>我们查看汇编界面的图形界面，我们发现上次是修改一个判断绕过签名验证，同理我们是否能修改下面代码中的判断语句来随便输入账号和密码就能登录成功呢？</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/1.png" heigtht="%60" width="50%"></p>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%94%A8%E6%88%B7%E5%90%8D%E5%92%8C%E5%AF%86%E7%A0%81/1.png" heigtht="%60" width="50%"></p>
 <blockquote>
-<p>文件中有Imports表和Exports表<br>Imports是导入表，so中调用的外面的函数。<br>Exports是导入表，so中能让外部调用的函数。<br>我们在java层可以知道调用了一个native层的函数check，然后Exports表记录了so中被外部调用的函数，而且我们清楚so中的函数都是以java_包名_类名_方法名的格式所命名。那么我们直接在Exports表中搜索check,就可以搜到该函数。</p>
+<p>我们看到上图中两个判断语句，我们先修改第一个，将BNE改为BEQ。</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/2.png" heigtht="%60" width="50%"></p>
 <blockquote>
-<p>我们找到check函数后双击它进入check方法。</p>
+<p>再修改第二个判断的语句，将BEQ改为BNE。</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/3.png" heigtht="%60" width="50%"></p>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%94%A8%E6%88%B7%E5%90%8D%E5%92%8C%E5%AF%86%E7%A0%81/2.png" heigtht="%60" width="50%"></p>
 <blockquote>
-<p>我们按F5将汇编语言变为c语言。</p>
+<p>保存so文件，然后替换掉原先armeabi和armeabi-v7a里面的so文件。</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/4.png" heigtht="%60" width="50%"></p>
 <blockquote>
-<p>我们发现存在一些乱码，我们按alt+a键，将如图所示编码改为UTF-8。点击ok后，再重新刷新之后就可以发现乱码没有了。</p>
+<p>然后重新打包，签名安装。</p>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/5.png" heigtht="%60" width="50%"></p>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/6.png" heigtht="%60" width="50%"></p>
+<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%94%A8%E6%88%B7%E5%90%8D%E5%92%8C%E5%AF%86%E7%A0%81/3.png" heigtht="%60" width="50%"></p>
 <blockquote>
-<p>乱码问题虽然解决了 但是下面的代码可读性很差 此时需要导入jni.h文件,点File-&gt;Load file-&gt;Parse C header file,找到jni.h所在位置点击打开,此时显示Compilation successful导入成功。<br>下载链接：<a href="https://pan.baidu.com/s/1n16NEx67zLHfGtVpU-CKAA" target="_blank" rel="noopener">https://pan.baidu.com/s/1n16NEx67zLHfGtVpU-CKAA</a> 密码：7xg6</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/8.png" heigtht="%60" width="50%"></p>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/9.png" heigtht="%60" width="50%"></p>
-<blockquote>
-<p>我选中第一个int,右键选择Convert to struct*，选择_JNIEnv,点击ok,我们发现有一些函数已经显示出来了。</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/7.png" heigtht="%60" width="50%"></p>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/10.png" heigtht="%60" width="50%"></p>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/11.png" heigtht="%60" width="50%"></p>
-<blockquote>
-<p>但是函数的可读性还是差了一些，我们选中函数GetStringUTFChars,右键选择force call type，其他的函数也同样这样，之后我们发现代码的可读性提高了。</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/12.png" heigtht="%60" width="50%"></p>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/13.png" heigtht="%60" width="50%"></p>
-<blockquote>
-<p>我们点选中a1,然后按n键重命名为env，至于为什么这样做，不是这节课的重点，以后的博客中会讲到。</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/14.png" heigtht="%60" width="50%"></p>
-<blockquote>
-<p>现在我们回到汇编视图，按空格键就可以切换到图形视图。图形视图我们可以一目了然的看清代码结构，我们也可以按住ctrl滑鼠标的滑轮来调节视图的大小。</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/15.png" heigtht="%60" width="50%"></p>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/16.png" heigtht="%60" width="50%"></p>
-<blockquote>
-<p>我们可以看到判断签名的代码。调用strcmp函数来比较现在的签名和原来的签名是否一致，如一致R0标志位置为0，比较标志位置是否为0，为0程序走左视图，不为0走右视图。</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/17.png" heigtht="%60" width="50%"></p>
-<blockquote>
-<p>我们想要让他通过，很显然，我们把BNE(不等于0)修改为BEQ(等于0)，这样我们修改完签名后，程序就会走左视图，就不会因为签名验证不能正常运行程序。<br>我们鼠标选中BNE，然后按空格键切换回汇编视图，选中BNE,然后点击View-&gt;open subview-&gt;hex dump。</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/18.png" heigtht="%60" width="50%"></p>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/19.png" heigtht="%60" width="50%"></p>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/20.png" heigtht="%60" width="50%"></p>
-<blockquote>
-<p>然后我们可以看到BNE对应的16进制，我们只需要将BNE的16进制改为BEQ的16进行就成功了。BNE是D1,BEQ是D0，我们修改后保存就修改成功。</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/21.png" heigtht="%60" width="50%"></p>
-<blockquote>
-<p>返回到汇编视图也可以看到修改成功。</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/22.png" heigtht="%60" width="50%"></p>
-<blockquote>
-<p>我们保存修改后的so文件。我们将修改后的so文件替换掉原先armeabi和armeabi-v7a里面的so文件。</p>
-</blockquote>
-<p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/IDA%E7%88%86%E7%A0%B4%E7%AD%BE%E5%90%8D%E9%AA%8C%E8%AF%81/23.png" heigtht="%60" width="50%"></p>
-<blockquote>
-<p>重新打包，签名，安装到手机就可以正常的运行了。</p>
+<p>总结一下：<br>首先要找到java所调用的native层的方法，再通过汇编代码、c理解代码逻辑，当中可以使用汇编的图形界面，可以快速帮助我们理解代码结构。往往需要修改的地方都是一些判断的语句，注意一下这些地方，可以很快的帮助到我们。<br>特别感谢吾爱破解论坛，我也是跟着论坛中的教学一步一步学习的，希望可以一步一个脚印把知识学扎实。</p>
 </blockquote>
 
       
@@ -427,13 +357,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/11/28/IDA爆破签名验证/">IDA爆破签名验证</a></p>
+        <p><span>本文标题:</span><a href="/2019/11/28/IDA破解账号密码/">IDA破解账号密码</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Antid0t3</a></p>
-        <p><span>发布时间:</span>2019-11-28, 13:58:05</p>
-        <p><span>最后更新:</span>2019-11-28, 15:40:12</p>
+        <p><span>发布时间:</span>2019-11-28, 15:43:16</p>
+        <p><span>最后更新:</span>2019-11-30, 10:57:27</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/11/28/IDA爆破签名验证/" title="IDA爆破签名验证">https://antid0t3.github.io/2019/11/28/IDA爆破签名验证/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://antid0t3.github.io/2019/11/28/IDA爆破签名验证/　　作者: Antid0t3" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2019/11/28/IDA破解账号密码/" title="IDA破解账号密码">https://antid0t3.github.io/2019/11/28/IDA破解账号密码/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://antid0t3.github.io/2019/11/28/IDA破解账号密码/　　作者: Antid0t3" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -446,15 +376,15 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/11/28/IDA破解账号密码/">
-                    IDA破解账号密码
+                <a href="/2019/11/28/jeb工具的使用/">
+                    jeb工具的使用
                 </a>
             </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/11/28/常见的几种编码方式/">
-                    常见的几种编码方式
+                <a href="/2019/11/28/IDA爆破签名验证/">
+                    IDA爆破签名验证
                 </a>
             </div>
         
@@ -502,7 +432,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"IDA爆破签名验证　| Hexo　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"IDA破解账号密码　| Hexo　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -522,7 +452,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/11/28/IDA破解账号密码/" title="上一篇: IDA破解账号密码">
+            <a href="/2019/11/28/jeb工具的使用/" title="上一篇: jeb工具的使用">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -530,7 +460,7 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/11/28/常见的几种编码方式/" title="下一篇: 常见的几种编码方式">
+            <a href="/2019/11/28/IDA爆破签名验证/" title="下一篇: IDA爆破签名验证">
                 <i class="fa fa-angle-right"></i>
             </a>
         
