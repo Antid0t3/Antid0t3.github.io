@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[X86汇编笔记]]></title>
+    <url>%2F2019%2F12%2F29%2FX86%E6%B1%87%E7%BC%96%E7%AC%94%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[本文主要记录x86汇编学习过程 文章为了节约时间只记录了关键部分，详细的可以参见王爽的那本汇编语言。由于win10取消了debug模式，我们利用一个汇编学习软件ASMBOXhttps://share.weiyun.com/96be7efb6265e13c27592925fba724c8密码3F3i吾爱破解论坛中有资源下载链接。 进入环境后debug，然后有如下的命令R命令查看、改变CPU寄存器的内容；D命令查看内存中的内容；E命令改写内存中的内容；U命令将内存中的机器指令翻译成汇编指令；T命令执行一条机器指令；A命令以汇编指令的格式在内存中写入一条机器指令； 接下来完成一下接下来的实验任务，就能明白指令的使用。]]></content>
+      <categories>
+        <category>网络安全</category>
+      </categories>
+      <tags>
+        <tag>x86汇编</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[静态分析反调试apk]]></title>
+    <url>%2F2019%2F11%2F30%2F%E9%9D%99%E6%80%81%E5%88%86%E6%9E%90%E5%8F%8D%E8%B0%83%E8%AF%95apk%2F</url>
+    <content type="text"><![CDATA[本文主要记录静态分析反调试apk。 把老版本IDA 目录下的android_server push 到手机/data/local/tmp目录下，用新版本IDA7.0，动态调试的时候会报错，我们把原先的替换成新版本的android_server就不会报错了。 然后注意到是32-bit的debug server,于是将IDA换成32位的。注意，调试32位的程序得用IDA的32位版，64位的程序用64位版。不然会出错。 手机开启USB调试后，连上电脑，在Terminal中输入命令来查看自己手机的cpu类型：adb shell getprop ro.product.cpu.abi]]></content>
+      <categories>
+        <category>网络安全</category>
+      </categories>
+      <tags>
+        <tag>安卓逆向</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[IDA动态破解登录验证]]></title>
     <url>%2F2019%2F11%2F29%2FIDA%E5%8A%A8%E6%80%81%E7%A0%B4%E8%A7%A3%E7%99%BB%E5%BD%95%E9%AA%8C%E8%AF%81%2F</url>
     <content type="text"><![CDATA[本文主要记录用IDA动态破解登录验证。 上一篇博客采用的IDA静态破解登录验证，本文尝试使用jeb结合IDA动态破解登录验证。apk链接：https://pan.baidu.com/s/1h6pX2ARE3qtiKiYbcnJ-3g 密码：duv5 先将apk拖进jeb中，点击manifest查看一下是否有android:debuggable=”true”语句，如果为false我们需要将它改为true。我们查看一下反编译后的代码，发现登录验证的代码是调用native的check方法。所以我们接下来需要使用IDA对so文件进行分析。 我们使用apktool拆包，然后使用IDA打开lib\armeabi\libJniTest.soib\armeabi\libJniTest.so文件。找到check方法的进行分析，这也是以前我们采用的静态分析方法。（不会使用IDA的可以查看上一篇博客IDA爆破签名验证） 我们可以像上节课那么直接修改so的16进制来破解，这是一种思路。接下来我们使用另外一种思路，动态调试so，在程序运行的时候改变程序的跳转逻辑。 将IDAPro/dbgsrv/下的Android_server push 到手机/data/local/temp/目录下，并给它777权限，并./运行 端口转发命令 adb forward tcp:23946 tcp:23946 使用命令:adb shell am start -D -n demo2.jni.com.myapplication/demo2.jni.com.myapplication.MainActivity启动需要调试的Activity,app会弹出Waitting for debugger 启动IDA pro DIA,点击”Debugger - &gt; Attach -&gt; Remote ArmLinux/Androiddebugger”，会看到以下对话框，然后按照如图所示操作，填写ip、转发的端口 点击ok后会弹出如下框，可以使用Ctrl F查找你要调试的包名，点击ok 打开monitor,查看端口，8700端口如果被占用，我们可以使用8601 我们打开命令提示符，输入以下命令：jdb -connect com.sun.jdi.SocketAttach:port=8601,hostname=localhost 点击IDA中的继续执行按钮，就是绿色三角的按钮（F9） 在ida弹出的”Add map”窗口中，一律点击”Cancle”按钮 IDA主要功能窗口如下图所示 因为我们没有设置断点，我们发现手机上已经不再是waitting for debug了，已经到了登录界面。在Modules中，我们可以按ctrl F,搜索我们要找的libjniTest.so 点击IDA中的暂停调试按钮，暂停当前的调试，如下图所示： 右击libJniTest.so文件，在弹出的框中点击”Jump to module base”,跳转到libJniTest.so文件的起始地址。按下Alt+T，弹出查找对话框中输入” Java_demo2_jni_com_myapplication_myJNI_check ” 。 也可以在Modules双击so文件，里面就会显示so函数方法的列表，找到check方法并点击，查看Debug窗口的汇编代码。（两种方法都可以找到check方法） 按F5将ARM汇编转换成c语言，设置UTF-8编码，导入jni.h文件并优化代码的可读性 通过IDA静态分析的时候可以看到里面的strcmp方法，这里没有显示出来，我们选中点进去，之后按住p键创建函数，成功后按Esc返回 F5转换成C语言后 再按一次F5键刷新一下代码 这里可以看到程序已经识别出来了strcmp函数 按Esc键返回到汇编视图 分析check函数汇编 可以看到三处strcmp分别是校验签名,用户名,和密码是否正确 由于我用的是原包测试所以这里签名是正确的 这里在校验用户名和密码处的strcmp分别下一个断点。 按F9运行程序 然后在手机正在运行的黑宝宝程序随便输入一个用户名和密码 用户名:pzb2019 密码:123456 点击登录 看到程序断在了第一个strcmp处 此时R0和R1寄存器分辨是strcmp函数的两个参数 鼠标先点击Hex View-1窗口 然后再点击R0寄存器后面的跳转地址 即可在Hex窗口中看到我刚刚输入的pzb2019和寄存器R1储存正确的用户名koudai。到这一步我们已经学会了用IDA动态调试apk了。 接下来我们尝试破解 第一种方法:我们先F8单步调试，我们发现R0寄存器的值不为0,我们选中右键把它置为0，强制让strcmp返回0 然后F9运行程序，下面修改密码的strcmp同理， 可以看到手机弹出登陆成功。 第二种方法:我们直接修改内存16进制破解。我们运行到第一个strcmp，我们可以把看到R1寄存器对应地址存的正确用户名koudai所对应的16进制为6B 6F 75 64 61 69 ，R0寄存器中我们输入的用户名pzb2019对应的16进制为70 7A 62 32 30 31 39。 我们尝试将R0寄存器内存地址存的内容改为R1内存中正确的用户名。R0寄存器中，右键选中进行编辑，改为6B 6F 75 64 61 69，最后用00结束，修改后右键应用即可。我们单步执行F8也可以看到R0置0了。 校验密码修改与之同理，修改完后，F9运行程序，手机就会弹出登录成功。]]></content>
@@ -25,7 +47,7 @@
   <entry>
     <title><![CDATA[安卓逆向的基础命令]]></title>
     <url>%2F2019%2F11%2F28%2F%E5%9F%BA%E6%9C%AC%E7%9A%84%E5%AE%89%E5%8D%93%E5%91%BD%E4%BB%A4%2F</url>
-    <content type="text"><![CDATA[本文主要介绍一下电脑连接手机后一些基本命令的操作。 1、把电脑的文件传到手机中因为手机中没有temp文件夹,需要建一个temp文件夹。(#后面为注释)adb shell #进入手机su #把权限升级为rootcd /data/data#进入目录下mkdir temp#创建一个文件夹chmod -R777 temp#给temp文件夹权限我们退出手机，使用命令：adb push D:/3/1.test /data/data/temp/成功将文件发到手机 2、把手机中的文件传送到电脑ada pull /data/local/temp/1.txt D:/3/ 3、pull出包下的所有的文件这里以/data/data/目录下的demo2.jni.com.myapplication包pull到电脑D:/3目录下为例。由于将包全部拉到电脑中需要权限，所以跟上面相似，现需要进入手机给包demo2.jni.com.myapplication权限命令：adb shellsucd /data/data/chmod -R 777 demo2.jni.com.myapplication然后我们exit,退出手机命令：adb pull /data/data/demo2.jni.com.myapplication/. D:/3/ 4、创建文件test.txt 5、创建文件夹 6、删除文件test.txt 7、删除文件夹dir 8、将apk安装在手机上 9、重命名文件1.txt]]></content>
+    <content type="text"><![CDATA[本文主要介绍一下电脑连接手机后一些基本命令的操作。 1、把电脑的文件传到手机中因为手机中没有temp文件夹,需要建一个temp文件夹。(#后面为注释)adb shell #进入手机su #把权限升级为rootcd /data/data#进入目录下mkdir temp#创建一个文件夹chmod -R 777 temp#给temp文件夹权限我们退出手机，使用命令：adb push D:/3/1.test /data/data/temp/成功将文件发到手机 2、把手机中的文件传送到电脑adb pull /data/local/temp/1.txt D:/3/ 3、pull出包下的所有的文件这里以/data/data/目录下的demo2.jni.com.myapplication包pull到电脑D:/3目录下为例。由于将包全部拉到电脑中需要权限，所以跟上面相似，现需要进入手机给包demo2.jni.com.myapplication权限命令：adb shellsucd /data/data/chmod -R 777 demo2.jni.com.myapplication然后我们exit,退出手机命令：adb pull /data/data/demo2.jni.com.myapplication/. D:/3/ 4、创建文件test.txt 5、创建文件夹 6、删除文件test.txt 7、删除文件夹dir 8、将apk安装在手机上 9、重命名文件1.txt]]></content>
       <categories>
         <category>网络安全</category>
       </categories>
@@ -37,7 +59,7 @@
   <entry>
     <title><![CDATA[jeb工具的使用]]></title>
     <url>%2F2019%2F11%2F28%2Fjeb%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8%2F</url>
-    <content type="text"><![CDATA[本文主要记录jeb工具的常用功能。 一、下面将会从以下几个方面介绍jeb的常用功能1.反编译apk,dex2.包名树状图3.查看指定类的smali代码4.转换成java语言5.java代码中双击函数 进入函数方法的定义 ，查看方法的调用6.查看AndroidManifest.xml我们首先使用apktool反编译，得到了反编译后的文件夹app-debug 二、工具的使用1、打开JEB软件，并把crack04.apk拖拉到JEB中即可反编译apk，双击Bytecode打开smali代码。 2、点击Bytecode/Hierarchy窗口即可查看包名树状图 树状图排列: 包名-&gt;类名。 3、双击包名下的类名即可查看smali代码 4、想把指定区域的smali代码转换成java代码,很简单,只需右键Q即可 5、双击方法即可跳转到方法的定义 点击方法按x键可以查看方法的调 6、双击Manifest即可查看AndroidManifest.xml 7、搜索功能可以搜索函数、字符串等]]></content>
+    <content type="text"><![CDATA[本文主要记录jeb工具的常用功能。 一、下面将会从以下几个方面介绍jeb的常用功能1.反编译apk,dex2.包名树状图3.查看指定类的smali代码4.转换成java语言5.java代码中双击函数 进入函数方法的定义 ，查看方法的调用6.查看AndroidManifest.xml我们首先使用apktool反编译，得到了反编译后的文件夹app-debug 二、工具的使用1、打开JEB软件，并把crack04.apk拖拉到JEB中即可反编译apk，双击Bytecode打开smali代码。 2、点击Bytecode/Hierarchy窗口即可查看包名树状图 树状图排列: 包名-&gt;类名。 3、双击包名下的类名即可查看smali代码 4、想把指定区域的smali代码转换成java代码,很简单,只需右键Q即可 5、双击方法即可跳转到方法的定义 点击方法按x键可以查看方法的调用 6、双击Manifest即可查看AndroidManifest.xml 7、搜索功能可以搜索函数、字符串等]]></content>
       <categories>
         <category>网络安全</category>
       </categories>

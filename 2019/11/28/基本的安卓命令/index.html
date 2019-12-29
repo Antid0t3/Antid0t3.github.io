@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/7.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/8.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/9.png">
-<meta property="og:updated_time" content="2019-11-28T13:40:28.302Z">
+<meta property="og:updated_time" content="2019-12-24T04:47:26.575Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安卓逆向的基础命令">
 <meta name="twitter:description" content="本文主要介绍一下电脑连接手机后一些基本命令的操作。">
@@ -204,7 +204,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/匿名网络/">匿名网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安卓逆向/">安卓逆向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具使用/">工具使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/操作系统/">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/流量识别/">流量识别</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/游戏破解/">游戏破解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络/">计算机网络</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/x86汇编/">x86汇编</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/匿名网络/">匿名网络</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安卓逆向/">安卓逆向</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具使用/">工具使用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/操作系统/">操作系统</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/流量识别/">流量识别</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/游戏破解/">游戏破解</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/编码/">编码</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机网络/">计算机网络</a></li></ul>
                     </div>
                 </section>
                 
@@ -332,11 +332,11 @@
 <a id="more"></a> 
 <p><the rest of contents | 余下全文> </the></p>
 <blockquote>
-<p>1、把电脑的文件传到手机中<br>因为手机中没有temp文件夹,需要建一个temp文件夹。(#后面为注释)<br>adb shell #进入手机<br>su #把权限升级为root<br>cd /data/data#进入目录下<br>mkdir temp#创建一个文件夹<br>chmod -R777 temp#给temp文件夹权限<br>我们退出手机，使用命令：<br>adb push D:/3/1.test /data/data/temp/<br>成功将文件发到手机</p>
+<p>1、把电脑的文件传到手机中<br>因为手机中没有temp文件夹,需要建一个temp文件夹。(#后面为注释)<br>adb shell #进入手机<br>su #把权限升级为root<br>cd /data/data#进入目录下<br>mkdir temp#创建一个文件夹<br>chmod -R 777 temp#给temp文件夹权限<br>我们退出手机，使用命令：<br>adb push D:/3/1.test /data/data/temp/<br>成功将文件发到手机</p>
 </blockquote>
 <p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/1.png" height="60%" width="50%"></p>
 <blockquote>
-<p>2、把手机中的文件传送到电脑<br>ada pull /data/local/temp/1.txt D:/3/</p>
+<p>2、把手机中的文件传送到电脑<br>adb pull /data/local/temp/1.txt D:/3/</p>
 </blockquote>
 <p><img src="https://raw.githubusercontent.com/Antid0t3/Antid0t3.github.image/master/%E5%AE%89%E5%8D%93%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/2.png" height="60%" width="50%"></p>
 <blockquote>
@@ -378,7 +378,7 @@
         <p><span>本文标题:</span><a href="/2019/11/28/基本的安卓命令/">安卓逆向的基础命令</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Antid0t3</a></p>
         <p><span>发布时间:</span>2019-11-28, 20:42:32</p>
-        <p><span>最后更新:</span>2019-11-28, 21:40:28</p>
+        <p><span>最后更新:</span>2019-12-24, 12:47:26</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2019/11/28/基本的安卓命令/" title="安卓逆向的基础命令">https://antid0t3.github.io/2019/11/28/基本的安卓命令/</a>
             <span class="copy-path" data-clipboard-text="原文: https://antid0t3.github.io/2019/11/28/基本的安卓命令/　　作者: Antid0t3" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -484,7 +484,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/11/29/IDA动态破解登录验证/">IDA动态破解登录验证</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/29/计算机操作系统读书笔记/">计算机操作系统读书笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/28/基本的安卓命令/">安卓逆向的基础命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/28/jeb工具的使用/">jeb工具的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/28/IDA破解账号密码/">IDA破解账号密码</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/28/IDA爆破签名验证/">IDA爆破签名验证</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/28/常见的几种编码方式/">常见的几种编码方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/27/IDA破解第一个so/">IDA破解第一个so</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/27/apktool的使用/">apktool的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/26/AS编写等一个so/">AndroidStudio编写第一个so</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/24/Smali代码中插入Log/">Smali代码中插入Log</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/23/动态调试Smali代码/">动态调试Smali代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/18/火柴人/">火柴人联盟</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/18/切水果大战/">切水果大战</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/08/匿名网络Tor与I2P的比较研究/">匿名网络Tor与I2P的比较研究</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/21/登山赛车破解/">登山赛车破解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/20/破解糖果星星达人/">破解糖果星星达人</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/12/29/X86汇编笔记/">X86汇编笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/30/静态分析反调试apk/">静态分析反调试apk</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/29/IDA动态破解登录验证/">IDA动态破解登录验证</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/29/计算机操作系统读书笔记/">计算机操作系统读书笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/28/基本的安卓命令/">安卓逆向的基础命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/28/jeb工具的使用/">jeb工具的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/28/IDA破解账号密码/">IDA破解账号密码</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/28/IDA爆破签名验证/">IDA爆破签名验证</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/28/常见的几种编码方式/">常见的几种编码方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/27/IDA破解第一个so/">IDA破解第一个so</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/27/apktool的使用/">apktool的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/26/AS编写等一个so/">AndroidStudio编写第一个so</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/24/Smali代码中插入Log/">Smali代码中插入Log</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/23/动态调试Smali代码/">动态调试Smali代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/18/火柴人/">火柴人联盟</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/18/切水果大战/">切水果大战</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/08/匿名网络Tor与I2P的比较研究/">匿名网络Tor与I2P的比较研究</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/21/登山赛车破解/">登山赛车破解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/20/破解糖果星星达人/">破解糖果星星达人</a></li></ul>
 
 
 
