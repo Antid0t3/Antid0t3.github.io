@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[x86汇编-实验7]]></title>
+    <url>%2F2020%2F01%2F09%2Fx86%E6%B1%87%E7%BC%96-%E5%AE%9E%E9%AA%8C7%2F</url>
+    <content type="text"><![CDATA[本文主要记录使用x86汇编进行编程，完成实验七 本次实验来源于王爽的《汇编语言》实验七 我们一共完成了三个版本，逐渐精简、优化。第一个版本将表格的每一列使用一个循环进行写入，分别是年份、总收入、人数、人均收入每一个循环循环21次，其中年份、总收入每一次循环写入4个字节，人数、人均收入每次写入2个字节年份是字节型数据，可以一个一个字节的写入，总收入是双字型数据（32位），需要用dx存储高16位，ax存储低16位数据。索引方式可以使用idata[si]或者[dx].idata[si]的方式。人数和人均收入是字型数据，利用通用寄存器就可以了。第一版如图所示 assume cs:code,ds:data,es:table data segment ;0-53h db &apos;1975&apos;,&apos;1976&apos;,&apos;1977&apos;,&apos;1978&apos;,&apos;1979&apos;,&apos;1980&apos;,&apos;1981&apos;,&apos;1982&apos;,&apos;1983&apos; db &apos;1984&apos;,&apos;1985&apos;,&apos;1986&apos;,&apos;1987&apos;,&apos;1988&apos;,&apos;1989&apos;,&apos;1990&apos;,&apos;1991&apos;,&apos;1992&apos; db &apos;1993&apos;,&apos;1994&apos;,&apos;1995&apos; ;54h-A7h dd 16,22,382,1356,2390,8000,16000,24486,50065,97479,140417,197514 dd 345980,590827,803530,1183000,1843000,2759000,3753000,4649000,5937000 ;A8h-D1h dw 3,7,9,13,28,38,130,220,476,778,1001,1442,2258,2793,4037,5635,8226 dw 11542,14430,15257,17800 data ends table segment db 21 dup(&apos;year sumn ne ?? &apos;) table ends code segment start: mov ax, data mov ds, ax mov ax, table mov es, ax mov bx, 0 mov di, 0 mov si, 0 mov cx, 21 s0: mov al, [bx] mov es:[di], al mov al, [bx+1] mov es:[di+1], al mov al, [bx+2] mov es:[di+2], al mov al, [bx+3] mov es:[di+3], al add bx, 4 add di, 16 loop s0 ;mov bx，54h mov di, 0 mov si, 0 mov bx, 0 mov dx, 0 mov cx, 21 s1: mov ax, 54h[bx] mov dx, 56h[bx] mov es:5h[di], ax mov es:7h[di], dx add bx, 4 add di, 16 loop s1 ;mov bx, 0A8h mov di, 0 mov si, 0 mov bx, 0 mov cx, 21 s2: mov ax, 0A8h[bx] mov es:[di+0Ah], ax add bx, 2 add di, 16 loop s2 mov di, 0 mov si, 0 mov dx, 0 mov cx, 21 s3: mov dx, es:[di+7] mov ax, es:[di+5] div word ptr es:[di+0Ah];除以内存，必须指定大小 mov es:[di+0Dh],ax add di, 16 loop s3 mov ax, 4c00h int 21h code ends end start 第二版将四个循环合并成为了一个循环，大大精简了程序，提高了效率。其中主要是多利用了si寄存器，因为年份、总收入一次循环需要增加4个字节，而人数、人均收入一次循环只需要增加2个字节，所以我们使用bx表示年份和总收入的偏移，si寄存器来表示人数的偏移，这样我们就可以在一个循环里完成所有的工作。 assume cs:code,ds:data,es:table data segment ;0-53h db &apos;1975&apos;,&apos;1976&apos;,&apos;1977&apos;,&apos;1978&apos;,&apos;1979&apos;,&apos;1980&apos;,&apos;1981&apos;,&apos;1982&apos;,&apos;1983&apos; db &apos;1984&apos;,&apos;1985&apos;,&apos;1986&apos;,&apos;1987&apos;,&apos;1988&apos;,&apos;1989&apos;,&apos;1990&apos;,&apos;1991&apos;,&apos;1992&apos; db &apos;1993&apos;,&apos;1994&apos;,&apos;1995&apos; ;54h-A7h dd 16,22,382,1356,2390,8000,16000,24486,50065,97479,140417,197514 dd 345980,590827,803530,1183000,1843000,2759000,3753000,4649000,5937000 ;A8h-D1h dw 3,7,9,13,28,38,130,220,476,778,1001,1442,2258,2793,4037,5635,8226 dw 11542,14430,15257,17800 data ends table segment db 21 dup(&apos;year sumn ne ?? &apos;) table ends code segment start: mov ax, data mov ds, ax mov ax, table mov es, ax mov bx, 0 mov di, 0 mov si, 0 mov cx, 21 s0: mov al, [bx] mov es:[di], al mov al, [bx+1] mov es:[di+1], al mov al, [bx+2] mov es:[di+2], al mov al, [bx+3] mov es:[di+3], al ;以上是复制年份 mov ax, 54h[bx] mov dx, 56h[bx] mov es:5h[di], ax mov es:7h[di], dx ;以上是复制总收入 mov ax, 0A8h[si] mov es:[di+0Ah], ax ;以上是复制人数 mov dx, es:[di+7] mov ax, es:[di+5] div word ptr es:[di+0Ah];除以内存，必须指定大小 mov es:[di+0Dh],ax ;以上是计算人均收入 add si, 2 add bx, 4 add di, 16 loop s0 mov ax, 4c00h int 21h code ends end start 第三版更为精简，由于年份每次循环要写入4个字节，用上面的办法显得很冗长，我们直接使用一个循环就可以顺利解决，使得程序更加简洁。需要注意几个要点：1、我要需要临时保存cx、bx的值，需要引入栈，我们需要设置好栈的相关信息。例如：需要保存寄存器cx值的时候使用push cx将值入栈，重新给寄存器cx赋值使用，当需要使用原先的值的时候，使用pop cx将值出栈赋值给cx。使用过程中注意栈的原理FILO(先进后出)。2、寄存器di、si 不能够同时使用，我们将si作为表一即源数据的偏移地址，使用di表示表二即目标数据的偏移地址，使用dx来辅助表示偏移地址。 assume cs:code,ds:data,es:table,ss:stack data segment ;0-53h db &apos;1975&apos;,&apos;1976&apos;,&apos;1977&apos;,&apos;1978&apos;,&apos;1979&apos;,&apos;1980&apos;,&apos;1981&apos;,&apos;1982&apos;,&apos;1983&apos; db &apos;1984&apos;,&apos;1985&apos;,&apos;1986&apos;,&apos;1987&apos;,&apos;1988&apos;,&apos;1989&apos;,&apos;1990&apos;,&apos;1991&apos;,&apos;1992&apos; db &apos;1993&apos;,&apos;1994&apos;,&apos;1995&apos; ;54h-A7h dd 16,22,382,1356,2390,8000,16000,24486,50065,97479,140417,197514 dd 345980,590827,803530,1183000,1843000,2759000,3753000,4649000,5937000 ;A8h-D1h dw 3,7,9,13,28,38,130,220,476,778,1001,1442,2258,2793,4037,5635,8226 dw 11542,14430,15257,17800 data ends table segment db 21 dup(&apos;year sumn ne ?? &apos;) table ends stack segment dw 0,0 stack ends code segment start: mov ax, data mov ds, ax mov ax, table mov es, ax mov ax, stack mov ss, ax mov sp, 4 mov bx, 0 mov di, 0 mov si, 0 mov cx, 21 s0: push cx push bx mov bx, 0 mov cx,4 s1: mov al, [si][bx] mov es:[di][bx], al inc bx loop s1 pop bx pop cx ;以上是复制年份 mov ax, 54h[si] mov dx, 56h[si] mov es:5h[di], ax mov es:7h[di], dx ;以上是复制总收入 mov ax, 0A8h[bx] mov es:[di+0Ah], ax ;以上是复制人数 mov dx, es:[di+7] mov ax, es:[di+5] div word ptr es:[di+0Ah];除以内存，必须指定大小 mov es:[di+0Dh],ax ;以上是计算人均收入 add bx, 2 add si, 4 add di, 16 loop s0 mov ax, 4c00h int 21h code ends end start]]></content>
+      <categories>
+        <category>网络安全</category>
+      </categories>
+      <tags>
+        <tag>x86汇编</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[X86汇编笔记]]></title>
     <url>%2F2019%2F12%2F29%2FX86%E6%B1%87%E7%BC%96%E7%AC%94%E8%AE%B0%2F</url>
     <content type="text"><![CDATA[本文主要记录x86汇编学习过程 文章为了节约时间只记录了关键部分，详细的可以参见王爽的那本汇编语言。由于win10取消了debug模式，我们利用一个汇编学习软件ASMBOXhttps://share.weiyun.com/96be7efb6265e13c27592925fba724c8密码3F3i吾爱破解论坛中有资源下载链接。 进入环境后debug，然后有如下的命令R命令查看、改变CPU寄存器的内容；D命令查看内存中的内容；E命令改写内存中的内容；U命令将内存中的机器指令翻译成汇编指令；T命令执行一条机器指令；A命令以汇编指令的格式在内存中写入一条机器指令； 接下来完成一下接下来的实验任务，就能明白指令的使用。]]></content>
@@ -158,9 +169,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[切水果大战]]></title>
-    <url>%2F2019%2F11%2F18%2F%E5%88%87%E6%B0%B4%E6%9E%9C%E5%A4%A7%E6%88%98%2F</url>
-    <content type="text"><![CDATA[本文主要记录破解切水果大战游戏的思路。 拿到这一款切水果游戏，首先安装到手机上玩一下。命令：adb install apk文件体验之后发现一般的道具消费都会提示充值金币，没有充值的话会提示失败我们尝试破解 将APK文件拖到Android Killer 进行反编译，我们看到反编译后的文件我们尝试进行关键字搜索“失败”我们会发现关于支付的代码。 我们浏览代码，可以看java代码，如果对smali代码熟练的话直接看smali 代码，我发现了支付失败的方法、支付成功的方法、支付取消的方法。 接下来我们尝试用三种方法进行破解第一种方法：我们找到了代码中支付失败、支付取消和支付成功的代码，我们可以直接将支付失败和支付取消的方法中的代码全部改为支付成功的代码。第二种方法：第一种方法是直接改支付失败里面的代码，将他们改成支付成功，这是一种思路，我们现在尝试第二种方法，尝试看一下支付失败的代码是在哪里被调用的。我们尝试搜索payResultFalse()方法，搜索到调用payResultFalse()的文件，如图所示，我们发现了调用支付失败和支付成功的位置，我们把调用支付失败的方法改成调用支付成功的方法。破解成功。第三种方法，我们修改switch分支，把:pswitch_1修改为:pswitch_0，这样代码只会跳转到支付成功的方法处，破解成功。]]></content>
+    <title><![CDATA[火柴人联盟]]></title>
+    <url>%2F2019%2F11%2F18%2F%E7%81%AB%E6%9F%B4%E4%BA%BA%2F</url>
+    <content type="text"><![CDATA[本文主要记录破解火柴人联盟游戏的思路。 安装火柴人游戏玩一下，发现游戏里面有商城，商城里面提供了需要购买的道具，还有一些礼包也需要购买，英雄也需要购买，支付方式分为了话费支付、三方支付。 我们尝试一下搜索一下关键的字符：支付失败、支付成功我们在查询过程中就可以看到支付信息代码所在的文件目录，我们一一打开，发现有短信、联通、移动、电信几种支付方式 我们可以看到关于支付信息的代码 我们先打开联通的支付，smali代码如下，就是一个简单的switch语句，我们将支付取消和支付失败的switch语句调用全部改为支付成功的情况。 我们在点击电信的支付信息，可以看到电信相关的支付成功的方法、支付失败的方法、支付取消的方法。我们使用最简单的方法，将支付失败和支付取消里面的代码全部改为支付成功的代码 我们在看一下移动支付的代码，和联通的基本一样，也是switch语句，我们还是果断使用switch大法，成功解决。 最后还有一部分去广告，同意支付接口的一系列操作后面再补充。]]></content>
       <categories>
         <category>网络安全</category>
       </categories>
@@ -170,9 +181,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[火柴人联盟]]></title>
-    <url>%2F2019%2F11%2F18%2F%E7%81%AB%E6%9F%B4%E4%BA%BA%2F</url>
-    <content type="text"><![CDATA[本文主要记录破解火柴人联盟游戏的思路。 安装火柴人游戏玩一下，发现游戏里面有商城，商城里面提供了需要购买的道具，还有一些礼包也需要购买，英雄也需要购买，支付方式分为了话费支付、三方支付。 我们尝试一下搜索一下关键的字符：支付失败、支付成功我们在查询过程中就可以看到支付信息代码所在的文件目录，我们一一打开，发现有短信、联通、移动、电信几种支付方式 我们可以看到关于支付信息的代码 我们先打开联通的支付，smali代码如下，就是一个简单的switch语句，我们将支付取消和支付失败的switch语句调用全部改为支付成功的情况。 我们在点击电信的支付信息，可以看到电信相关的支付成功的方法、支付失败的方法、支付取消的方法。我们使用最简单的方法，将支付失败和支付取消里面的代码全部改为支付成功的代码 我们在看一下移动支付的代码，和联通的基本一样，也是switch语句，我们还是果断使用switch大法，成功解决。 最后还有一部分去广告，同意支付接口的一系列操作后面再补充。]]></content>
+    <title><![CDATA[切水果大战]]></title>
+    <url>%2F2019%2F11%2F18%2F%E5%88%87%E6%B0%B4%E6%9E%9C%E5%A4%A7%E6%88%98%2F</url>
+    <content type="text"><![CDATA[本文主要记录破解切水果大战游戏的思路。 拿到这一款切水果游戏，首先安装到手机上玩一下。命令：adb install apk文件体验之后发现一般的道具消费都会提示充值金币，没有充值的话会提示失败我们尝试破解 将APK文件拖到Android Killer 进行反编译，我们看到反编译后的文件我们尝试进行关键字搜索“失败”我们会发现关于支付的代码。 我们浏览代码，可以看java代码，如果对smali代码熟练的话直接看smali 代码，我发现了支付失败的方法、支付成功的方法、支付取消的方法。 接下来我们尝试用三种方法进行破解第一种方法：我们找到了代码中支付失败、支付取消和支付成功的代码，我们可以直接将支付失败和支付取消的方法中的代码全部改为支付成功的代码。第二种方法：第一种方法是直接改支付失败里面的代码，将他们改成支付成功，这是一种思路，我们现在尝试第二种方法，尝试看一下支付失败的代码是在哪里被调用的。我们尝试搜索payResultFalse()方法，搜索到调用payResultFalse()的文件，如图所示，我们发现了调用支付失败和支付成功的位置，我们把调用支付失败的方法改成调用支付成功的方法。破解成功。第三种方法，我们修改switch分支，把:pswitch_1修改为:pswitch_0，这样代码只会跳转到支付成功的方法处，破解成功。]]></content>
       <categories>
         <category>网络安全</category>
       </categories>

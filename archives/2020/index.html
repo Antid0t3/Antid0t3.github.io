@@ -15,18 +15,13 @@
 
 
 
-<meta name="description" content="本文主要记录学习计算机操作系统的心得。">
-<meta name="keywords" content="操作系统">
-<meta property="og:type" content="article">
-<meta property="og:title" content="计算机操作系统读书笔记">
-<meta property="og:url" content="https://antid0t3.github.io/2019/11/29/计算机操作系统读书笔记/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://antid0t3.github.io/archives/2020/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="本文主要记录学习计算机操作系统的心得。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-11-29T03:30:11.834Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="计算机操作系统读书笔记">
-<meta name="twitter:description" content="本文主要记录学习计算机操作系统的心得。">
+<meta name="twitter:title" content="Hexo">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -58,7 +53,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>计算机操作系统读书笔记 | Hexo</title>
+<title>Archives: 2020 | Hexo</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -68,8 +63,8 @@
         fancybox: true,
         animate: true,
         isHome: false,
-        isPost: true,
-        isArchive: false,
+        isPost: false,
+        isArchive: true,
         isTag: false,
         isCategory: false,
         fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
@@ -271,211 +266,60 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-计算机操作系统读书笔记" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap">
   
-    <div class="article-meta">
-      <a href="/2019/11/29/计算机操作系统读书笔记/" class="article-date">
-      <time datetime="2019-11-29T01:34:20.000Z" itemprop="datePublished">2019-11-29</time>
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+          <div class="article-meta">
+              <a href="/2020/01/09/x86汇编-实验7/" class="archive-article-date">
+      <time datetime="2020-01-09T05:15:56.000Z" itemprop="datePublished">01-09</time>
 </a>
 
 
-    </div>
+        </div>
+         
   
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      计算机操作系统读书笔记
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/01/09/x86汇编-实验7/">x86汇编-实验7</a>
     </h1>
   
 
-      </header>
-      
-      <div class="article-info article-info-post">
-        
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/计算机技术/">计算机技术</a>
-    </div>
-
-
-        
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/操作系统/">操作系统</a></li></ul>
-    </div>
-
-        <div class="clearfix"></div>
-      </div>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
+        <div class="article-info info-on-archive">
           
-        <p><excerpt in index | 首页摘要></excerpt></p>
-<blockquote>
-<p>本文主要记录学习计算机操作系统的心得。</p>
-</blockquote>
-<a id="more"></a>
-<p><the rest of contents | 余下全文></the></p>
-<blockquote>
-<p>第一章<br>操作系统作用：<br>1、OS作为用户与计算机硬件系统之间的接口<br>2、OS作为计算机系统资源的管理者<br>3、OS实现了对计算机资源的抽象</p>
-</blockquote>
-<blockquote>
-<p>操作系统发展过程：<br>1、人工操作系统<br>2、单道批处理系统<br>由于系统对作业的处理都是成批地处理的，且在内存中保持一道作业，故称此系统为单道批处理系统。<br>3、多道批处理系统<br>用户提交的作业都存放在外存上并排列成一个队列，称为“后备队列”；然后，由作业调度程序按一定的算法从后备队列中选择若干个作业调入内存，使他们共享CPU和系统中的各种资源。<br>4、分时系统<br>分时系统与多道批处理系统之间有着截然不同的性能差别，他能很好的将一台计算机提供给多用户使用，提高计算机得利用率。<br>5、实时系统<br>系统能及时响应外部事件的请求，在规定的时间内完成对事件的处理，并控制所有实时任务协调一致地运行。<br>6、微机操作系统<br>(1)单用户单任务操作系统<br>CP/M<br>MS-DOS<br>(2)单用户多任务操作系统<br>Windows<br>(3)多用户多任务操作系统<br>UNIX OS<br>UNIX的变型Solaris OS和Linux OS</p>
-</blockquote>
-<blockquote>
-<p>操作系统的基本特性：<br>1、并发性<br>并行和并发的区别<br>进程和线程<br>进程是指在系统中能独立运行并作为资源分配的基本单位<br>进程作为资源分配的基本单位，而线程作为独立运行和独立调度的基本单位。由于线程比进程小，基本上不拥有系统资源，故对他调度所付出的开销就会小很多。<br>2、共享性<br>3、虚拟技术<br>时分复用、空分复用<br>4、异步性、<br>进程是以人们不可预知的速度向前推进，此即进程的异步性。但只要操作系统中配置完善的进程同步机制，且运行环境相同，作业经过多次运行都会获得相同的结果。因此，异步运行方式是允许的，而且是操作系统的一个重要特征</p>
-</blockquote>
-<blockquote>
-<p>操作系统的主要功能<br>1、处理机管理功能<br>进程控制<br>进程同步<br>进程通信<br>调度<br>2、存储器管理功能<br>内存分配<br>内存保护<br>地址映射<br>内存扩充<br>3、设备管理功能<br>缓冲管理<br>设备分配<br>设备处理<br>4、文件管理功能<br>文件存储空间的管理<br>目录管理<br>文件的读/写管理和保护<br>5、操作系统与用户之间的接口<br>用户接口<br>程序接口</p>
-</blockquote>
-<blockquote>
-<p>第二章<br>进程是资源分配和独立运行的基本单位</p>
-</blockquote>
-<blockquote>
-<p>进程的三种基本状态<br>1、就绪状态<br>当进程分配到除了cpu以外的所有必要资源后，只要再获得CPU，便可以立即运行，进程这时的状态称为就绪状态。<br>2、执行状态<br>3、阻塞状态<br>在不少系统中只有上述三种状态，另外一些系统增加了一些新状态。<br>4、挂起状态<br>5、创建状态和终止状态</p>
-</blockquote>
-<blockquote>
-<p>进程控制块PCB(Process Control Block),他是进程实体的一部分，是操作系统中最重要的记录型数据结构。<br>PCB的作用是使一个在多道程序环境下不能独立运行的程序（含数据），成为一个能独立运行的基本单位，一个能与其他进程并发的进程。</p>
-</blockquote>
-<blockquote>
-<p>进程控制块中主要包含下述四方面的信息<br>进程标识符<br>处理机状态<br>进程调度信息<br>进程控制信息</p>
-</blockquote>
-<blockquote>
-<p>进程控制块的组织方式<br>链接方式<br>索引方式</p>
-</blockquote>
-<blockquote>
-<p>进程控制一般是由OS的内核中的原语来实现的。<br>原语是由若干条指令组成的，用于完成一定功能的一个过程。它与一般过程的区别是：它们是“原子操作”。<br>原子操作：指一个操作中的所有动作，要不全做，要不全不做。它是一个不可分割的基本单位，在执行过程中不允许被中断。<br>原子操作在管态下执行，常驻内存。<br>原语的作用是为了实现进程的通信和控制，系统对进程的控制如果不使用原语，就会造成其状态的不确定性，从而达不到进程控制的目的。</p>
-</blockquote>
-
-      
-    </div>
-    
-  </div>
-  
-    
-    <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/11/29/计算机操作系统读书笔记/">计算机操作系统读书笔记</a></p>
-        <p><span>文章作者:</span><a href="/" title="回到主页">Antid0t3</a></p>
-        <p><span>发布时间:</span>2019-11-29, 09:34:20</p>
-        <p><span>最后更新:</span>2019-11-29, 11:30:11</p>
-        <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/11/29/计算机操作系统读书笔记/" title="计算机操作系统读书笔记">https://antid0t3.github.io/2019/11/29/计算机操作系统读书笔记/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://antid0t3.github.io/2019/11/29/计算机操作系统读书笔记/　　作者: Antid0t3" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
-            <script> var clipboard = new Clipboard('.copy-path'); </script>
-        </p>
-        <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target="_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
-        </p>
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/网络安全/">网络安全</a>
     </div>
 
 
-
-    <nav id="article-nav">
-        
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/11/29/IDA动态破解登录验证/">
-                    IDA动态破解登录验证
-                </a>
-            </div>
-        
-        
-            <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/11/28/基本的安卓命令/">
-                    安卓逆向的基础命令
-                </a>
-            </div>
-        
-    </nav>
-
-  
-</article>
-
-    <div id="toc" class="toc-article">
-        <strong class="toc-title">文章目录</strong>
-        
-            
-        
+          
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/x86汇编/">x86汇编</a></li></ul>
     </div>
-    <style>
-        .left-col .switch-btn,
-        .left-col .switch-area {
-            display: none;
-        }
-        .toc-level-3 i,
-        .toc-level-3 ol {
-            display: none !important;
-        }
-    </style>
 
-    <input type="button" id="tocButton" value="隐藏目录" title="点击按钮隐藏或者显示文章目录">
-
-    <script>
-        yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
-    </script>
-
-
-
-    
-<div class="share">
-    
-        <div class="bdsharebuttonbox">
-            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
-            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
-            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
-            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
-            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
-            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></a>
         </div>
-        <script>
-            window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"计算机操作系统读书笔记　| Hexo　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
-        </script>
-    
-
-    
-</div>
-
-
-
-
-
-
+        <div class="clearfix"></div>
+    </header>
+  </div>
+</article>
+  
+  
+    </div></section>
+  
 
     
 
-
-
-
-    <div class="scroll" id="post-nav-button">
-        
-            <a href="/2019/11/29/IDA动态破解登录验证/" title="上一篇: IDA动态破解登录验证">
-                <i class="fa fa-angle-left"></i>
-            </a>
-        
-
-        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
-
-        
-            <a href="/2019/11/28/基本的安卓命令/" title="下一篇: 安卓逆向的基础命令">
-                <i class="fa fa-angle-right"></i>
-            </a>
-        
-    </div>
-
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2020/01/09/x86汇编-实验7/">x86汇编-实验7</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/12/29/X86汇编笔记/">X86汇编笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/30/静态分析反调试apk/">静态分析反调试apk</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/29/IDA动态破解登录验证/">IDA动态破解登录验证</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/29/计算机操作系统读书笔记/">计算机操作系统读书笔记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/28/基本的安卓命令/">安卓逆向的基础命令</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/28/jeb工具的使用/">jeb工具的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/28/IDA破解账号密码/">IDA破解账号密码</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/28/IDA爆破签名验证/">IDA爆破签名验证</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/28/常见的几种编码方式/">常见的几种编码方式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/27/IDA破解第一个so/">IDA破解第一个so</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/27/apktool的使用/">apktool的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/26/AS编写等一个so/">AndroidStudio编写第一个so</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/24/Smali代码中插入Log/">Smali代码中插入Log</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/23/动态调试Smali代码/">动态调试Smali代码</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/18/火柴人/">火柴人联盟</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/18/切水果大战/">切水果大战</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/11/08/匿名网络Tor与I2P的比较研究/">匿名网络Tor与I2P的比较研究</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/21/登山赛车破解/">登山赛车破解</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/03/20/破解糖果星星达人/">破解糖果星星达人</a></li></ul>
-
-
-
-
-    <script>
-        
-    </script>
 </div>
       <footer id="footer">
     <div class="outer">
