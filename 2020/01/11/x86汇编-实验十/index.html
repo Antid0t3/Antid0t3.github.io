@@ -15,25 +15,29 @@
 
 
 
-<meta name="description" content="本文主要记录破解火柴人联盟游戏的思路。">
-<meta name="keywords" content="安卓逆向,游戏破解">
+<meta name="description" content="本文主要记录使用x86汇编进行编程。编写子程序实现以下三个功能：1、显示字符串2、解决除法溢出问题3、数值显示">
+<meta name="keywords" content="x86汇编">
 <meta property="og:type" content="article">
-<meta property="og:title" content="火柴人联盟">
-<meta property="og:url" content="https://antid0t3.github.io/2019/11/18/火柴人/index.html">
+<meta property="og:title" content="x86汇编-实验十">
+<meta property="og:url" content="https://antid0t3.github.io/2020/01/11/x86汇编-实验十/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="本文主要记录破解火柴人联盟游戏的思路。">
+<meta property="og:description" content="本文主要记录使用x86汇编进行编程。编写子程序实现以下三个功能：1、显示字符串2、解决除法溢出问题3、数值显示">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/raw/master/%E7%81%AB%E6%9F%B4%E4%BA%BA/6.png">
-<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/raw/master/%E7%81%AB%E6%9F%B4%E4%BA%BA/2.png">
-<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/raw/master/%E7%81%AB%E6%9F%B4%E4%BA%BA/3.png">
-<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/raw/master/%E7%81%AB%E6%9F%B4%E4%BA%BA/4.png">
-<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/raw/master/%E7%81%AB%E6%9F%B4%E4%BA%BA/5.png">
-<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/raw/master/%E7%81%AB%E6%9F%B4%E4%BA%BA/7.png">
-<meta property="og:updated_time" content="2019-11-23T14:17:47.896Z">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/x86%E6%B1%87%E7%BC%96%E2%80%94%E5%AE%9E%E9%AA%8C10/1.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/x86%E6%B1%87%E7%BC%96%E2%80%94%E5%AE%9E%E9%AA%8C10/7.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/x86%E6%B1%87%E7%BC%96%E2%80%94%E5%AE%9E%E9%AA%8C10/2.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/x86%E6%B1%87%E7%BC%96%E2%80%94%E5%AE%9E%E9%AA%8C10/3.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/x86%E6%B1%87%E7%BC%96%E2%80%94%E5%AE%9E%E9%AA%8C10/8.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/x86%E6%B1%87%E7%BC%96%E2%80%94%E5%AE%9E%E9%AA%8C10/4.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/x86%E6%B1%87%E7%BC%96%E2%80%94%E5%AE%9E%E9%AA%8C10/5.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/x86%E6%B1%87%E7%BC%96%E2%80%94%E5%AE%9E%E9%AA%8C10/6.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/x86%E6%B1%87%E7%BC%96%E2%80%94%E5%AE%9E%E9%AA%8C10/9.png?raw=true">
+<meta property="og:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/x86%E6%B1%87%E7%BC%96%E2%80%94%E5%AE%9E%E9%AA%8C10/10.png?raw=true">
+<meta property="og:updated_time" content="2020-01-12T07:33:13.597Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="火柴人联盟">
-<meta name="twitter:description" content="本文主要记录破解火柴人联盟游戏的思路。">
-<meta name="twitter:image" content="https://github.com/Antid0t3/Antid0t3.github.image/raw/master/%E7%81%AB%E6%9F%B4%E4%BA%BA/6.png">
+<meta name="twitter:title" content="x86汇编-实验十">
+<meta name="twitter:description" content="本文主要记录使用x86汇编进行编程。编写子程序实现以下三个功能：1、显示字符串2、解决除法溢出问题3、数值显示">
+<meta name="twitter:image" content="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/x86%E6%B1%87%E7%BC%96%E2%80%94%E5%AE%9E%E9%AA%8C10/1.png?raw=true">
 
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
@@ -65,7 +69,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>火柴人联盟 | Hexo</title>
+<title>x86汇编-实验十 | Hexo</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -278,11 +282,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我">
 </nav>
-      <div class="body-wrap"><article id="post-火柴人" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-x86汇编-实验十" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2019/11/18/火柴人/" class="article-date">
-      <time datetime="2019-11-18T13:07:16.000Z" itemprop="datePublished">2019-11-18</time>
+      <a href="/2020/01/11/x86汇编-实验十/" class="article-date">
+      <time datetime="2020-01-11T12:52:32.000Z" itemprop="datePublished">2020-01-11</time>
 </a>
 
 
@@ -297,7 +301,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      火柴人联盟
+      x86汇编-实验十
     </h1>
   
 
@@ -312,7 +316,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/安卓逆向/">安卓逆向</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/游戏破解/">游戏破解</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/x86汇编/">x86汇编</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -324,37 +328,290 @@
           
         <p><excerpt in index | 首页摘要> </excerpt></p>
 <blockquote>
-<p>本文主要记录破解火柴人联盟游戏的思路。</p>
+<p>本文主要记录使用x86汇编进行编程。编写子程序实现以下三个功能：<br>1、显示字符串<br>2、解决除法溢出问题<br>3、数值显示</p>
 </blockquote>
 <a id="more"></a> 
 <p><the rest of contents | 余下全文> </the></p>
 <blockquote>
-<p>安装火柴人游戏玩一下，发现游戏里面有商城，商城里面提供了需要购买的道具，还有一些礼包也需要购买，英雄也需要购买，支付方式分为了话费支付、三方支付。</p>
+<p>本次实验来源于王爽的《汇编语言》实验十<br>包含以下三个实验，三个实验都非常重要，综合了前面汇编的很多知识。<br>实验1、实现字符串在屏幕指定位置显示。</p>
+</blockquote>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/x86%E6%B1%87%E7%BC%96%E2%80%94%E5%AE%9E%E9%AA%8C10/1.png?raw=true" heigtht="%60" width="50%"></p>
+<blockquote>
+<p>具体思路注释在每一行代码之后，见如下代码：<br>其中需要注意的是，显存使用两个字节存储一个字符，第一个字节存储的是字符的ascii码，第二个字节存储的是属性：BL R G B I R G B<br>其中0-2位存储的是前景色、第3位是高亮、第4-6位存储的是背景色、第7位存储的是闪烁<br>R:红色、G：绿色、B：蓝色、BL：闪烁、I：高亮</p>
+</blockquote>
+<pre><code>assume cs:code, ds:data
+
+data segment
+db &apos;Welcome to masm!&apos;,0
+data ends
+
+code         segment
+start:        mov dh, 8
+            mov dl, 3
+            mov cl, 2        ;2为绿色10
+
+            mov ax, data
+            mov ds, ax
+            mov si, 0 
+            mov di, 0
+            call show_str
+
+            mov ax, 4c00h
+            int 21h
+
+show_str:    push cx 
+
+            mov al, 0A0h    ;屏幕一行80个字符，160字节
+
+            inc dh            ;行号是从0开始的，主要是计算这一行的开头
+            mul dh            ;要写入这一行的开头
+
+            mov bx, ax        ;要写入那一行的开头地址
+
+            mov al,2        ;每一列包含一个字符，两个字节
+
+            inc dl             ;第三列的的第一个字节，每一列两个字节，也就是偶数字节
+            mul dl
+
+            add bx,ax        ;要写入位置的首地址
+
+            mov ax, 0B800h
+            mov es, ax
+
+            mov al, cl
+            mov ch, 0 
+        s:    mov cl, [si]    ;将字符串db &apos;Welcome to masm!&apos;,0依次存入cl,遇到0跳出到ok 
+            jcxz ok
+            mov es:[bx+di],cl ；一个字符两个字节存储，第一个字节存储字符的ascii,第二个字节存储属性。
+            mov es:[bx+di+1],al
+            inc si
+            add di, 2
+            jmp short  s
+
+        ok:    pop cx
+            ret
+code ends
+end start
+</code></pre><blockquote>
+<p>结果如下图所示：<br><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/x86%E6%B1%87%E7%BC%96%E2%80%94%E5%AE%9E%E9%AA%8C10/7.png?raw=true" heigtht="%60" width="50%"></p>
 </blockquote>
 <blockquote>
-<p>我们尝试一下搜索一下关键的字符：支付失败、支付成功<br>我们在查询过程中就可以看到支付信息代码所在的文件目录，我们一一打开，发现有短信、联通、移动、电信几种支付方式</p>
+<p>实验2、解决除法溢出问题</p>
 </blockquote>
-<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/raw/master/%E7%81%AB%E6%9F%B4%E4%BA%BA/6.png" width="50%" height="30%"></p>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/x86%E6%B1%87%E7%BC%96%E2%80%94%E5%AE%9E%E9%AA%8C10/2.png?raw=true" heigtht="%60" width="50%"></p>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/x86%E6%B1%87%E7%BC%96%E2%80%94%E5%AE%9E%E9%AA%8C10/3.png?raw=true" heigtht="%60" width="50%"></p>
 <blockquote>
-<p>我们可以看到关于支付信息的代码</p>
+<p>代码后注释讲述了原理，实现的代码如图所示：<br>其中乘65536处理的非常好，非常熟练灵活的使用dx、ax寄存器！需要加强对汇编的理解！</p>
 </blockquote>
-<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/raw/master/%E7%81%AB%E6%9F%B4%E4%BA%BA/2.png" width="50%" height="60%"></p>
+<pre><code>assume cs:code
+
+code segment
+start:    mov ax, 4240h
+        mov dx, 000fh
+        mov cx, 0ah
+        call divdw
+
+        mov ax,4c00h
+        int 21h
+
+divdw:    push ax
+
+        mov ax, dx
+        mov dx, 0 
+        div cx        ;商存在ax中,余数在dx中
+        mov bx, ax     ;商存在ax, bx 中,余数在dx中,这时候的dx已经是最终商的高16位
+
+        pop ax        ;dx是rem(H/N)*65536,AX为L
+
+        div cx        ;这个时候ax存放的是低16位的商，dx存放的是最终的余数
+
+        mov cx, dx
+        mov dx, bx    ;X/N=INT(H/N)*65536+[rem{H/N}*65536+L]/N
+
+        ret
+
+code ends
+end start
+</code></pre><blockquote>
+<p>结果如下图所示：</p>
+</blockquote>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/x86%E6%B1%87%E7%BC%96%E2%80%94%E5%AE%9E%E9%AA%8C10/8.png?raw=true" heigtht="%60" width="50%"></p>
 <blockquote>
-<p>我们先打开联通的支付，smali代码如下，就是一个简单的switch语句，我们将支付取消和支付失败的switch语句调用全部改为支付成功的情况。</p>
+<p>实验3、数值显示</p>
 </blockquote>
-<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/raw/master/%E7%81%AB%E6%9F%B4%E4%BA%BA/3.png" width="50%" height="60%"></p>
-<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/raw/master/%E7%81%AB%E6%9F%B4%E4%BA%BA/4.png" width="50%" height="60%"></p>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/x86%E6%B1%87%E7%BC%96%E2%80%94%E5%AE%9E%E9%AA%8C10/4.png?raw=true" heigtht="%60" width="50%"></p>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/x86%E6%B1%87%E7%BC%96%E2%80%94%E5%AE%9E%E9%AA%8C10/5.png?raw=true" heigtht="%60" width="50%"></p>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/x86%E6%B1%87%E7%BC%96%E2%80%94%E5%AE%9E%E9%AA%8C10/6.png?raw=true" heigtht="%60" width="50%"></p>
 <blockquote>
-<p>我们在点击电信的支付信息，可以看到电信相关的支付成功的方法、支付失败的方法、支付取消的方法。我们使用最简单的方法，将支付失败和支付取消里面的代码全部改为支付成功的代码</p>
+<p>代码后的注释解释了具体步骤，其中需要注意余数和商的存放。先放出自己写的代码如下：</p>
 </blockquote>
-<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/raw/master/%E7%81%AB%E6%9F%B4%E4%BA%BA/5.png" width="50%" height="60%"></p>
+<pre><code>assume cs:code,ds:data
+
+data segment 
+db 10 dup(0)
+data ends 
+
+code segment
+start:        mov ax, data
+            mov ds, ax
+            mov ax, 12666
+
+            mov si, 4
+
+            call dotc
+
+            mov dh, 8        ;显示的行
+            mov dl, 3        ;显示的列
+            mov cx, 0
+            mov cl, 2
+            mov si, 0 
+            mov di, 0
+            call show_str
+
+            mov ax, 4c00h
+            int 21h
+
+dotc:        mov bx, 10
+            mov dx, 0
+            mov cx, 5
+s:            div bx             ;dx存放的余数，ax存放商
+            add dx, 30h
+            mov [si],dl
+            mov dx, 0
+            sub si, 1
+
+            loop s 
+
+            ret
+
+show_str:    push cx 
+
+            mov al, 0A0h    ;屏幕一行80个字符，160字节
+
+            inc dh            ;行号是从0开始的，主要是计算这一行的开头
+            mul dh            ;要写入这一行的开头
+
+            mov bx, ax        ;要写入那一行的开头地址
+
+            mov al,2        ;每一列包含一个字符，两个字节
+
+            inc dl             ;第三列的的第一个字节，每一列两个字节，也就是偶数字节
+            mul dl
+
+            add bx,ax        ;要写入位置的首地址
+
+            mov ax, 0B800h
+            mov es, ax
+
+            mov al, cl
+            mov ch, 0 
+        s0:    mov cl, [si]    ;将字符串db &apos;Welcome to masm!&apos;,0依次存入cl,遇到0跳出到ok 
+            jcxz ok
+            mov es:[bx+di],cl 
+            mov es:[bx+di+1],al
+            inc si
+            add di, 2
+            jmp short  s0
+
+        ok:    pop cx
+            ret
+
+code ends
+end start
+</code></pre><blockquote>
+<p>结果如下图所示:</p>
+</blockquote>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/x86%E6%B1%87%E7%BC%96%E2%80%94%E5%AE%9E%E9%AA%8C10/9.png?raw=true" heigtht="%60" width="50%"></p>
 <blockquote>
-<p>我们在看一下移动支付的代码，和联通的基本一样，也是switch语句，我们还是果断使用switch大法，成功解决。</p>
+<p>我们发现代码存在一定的问题，问题在我们直接设定的循环次数为5，这是我们已知有5个字母，我们怎么设计使得程序更具有通用性呢？接下来我们对程序进行改进，代码如下：<br>思想来源于题目中第（3）点，我们通过判断商是否为0来判断是否除完了，通过设置一个计数器bx来记录一共有几位，从而确定循环的次数，思想值得学习。</p>
 </blockquote>
-<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/raw/master/%E7%81%AB%E6%9F%B4%E4%BA%BA/7.png" width="50%" height="60%"></p>
-<blockquote>
-<p>最后还有一部分去广告，同意支付接口的一系列操作后面再补充。</p>
+<pre><code>assume cs:code,ds:data
+
+data segment 
+db 10 dup(0)
+data ends 
+
+code segment
+start:    mov ax, data
+        mov ds, ax
+        mov ax, 12666
+        mov bx, 0
+
+        mov si, 0
+
+        call dotc
+
+        mov dh, 8    ;显示的行
+        mov dl, 3    ;显示的列
+        mov cx, 0
+        mov cl, 2
+
+        mov si, 0 
+        mov di, 0
+        call show_str
+
+        mov ax, 4c00h
+        int 21h
+
+dotc:    
+s:        mov cx, 10
+        mov dx, 0
+        div cx     ;dx存放的余数，ax存放商
+        mov cx, ax    ;将商放在cx中，方便使用jcxz
+        jcxz s1
+        push dx
+        inc bx 
+        jmp short s
+s1:        push dx 
+        inc bx 
+        mov cx, bx 
+
+s2:        pop ax 
+        add al,30h
+        mov [si],al 
+        inc si
+        loop s2
+
+        ret
+
+show_str:    push cx 
+
+            mov al, 0A0h    ;屏幕一行80个字符，160字节
+
+            dec dh            ;行号是从0开始的，主要是计算这一行的开头
+            mul dh            ;要写入这一行的开头
+
+            mov bx, ax        ;要写入那一行的开头地址
+
+            mov al,2        ;每一列包含一个字符，两个字节
+
+            dec dl             ;第三列的的第一个字节，每一列两个字节，也就是偶数字节
+            mul dl
+
+            add bx,ax        ;要写入位置的首地址
+
+            mov ax, 0B800h
+            mov es, ax
+
+            mov al, cl
+            mov ch, 0 
+        s0:    mov cl, [si]    ;将字符串db &apos;123666&apos;,0依次存入cl,遇到0跳出到ok 
+            jcxz ok
+            mov es:[bx+di],cl 
+            mov es:[bx+di+1],al
+            inc si
+            add di, 2
+            jmp short  s0
+
+        ok:    pop cx
+            ret
+
+code ends
+end start
+</code></pre><blockquote>
+<p>结果如下图所示:</p>
 </blockquote>
+<p><img src="https://github.com/Antid0t3/Antid0t3.github.image/blob/master/x86%E6%B1%87%E7%BC%96%E2%80%94%E5%AE%9E%E9%AA%8C10/10.png?raw=true" heigtht="%60" width="50%"></p>
 
       
     </div>
@@ -363,13 +620,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2019/11/18/火柴人/">火柴人联盟</a></p>
+        <p><span>本文标题:</span><a href="/2020/01/11/x86汇编-实验十/">x86汇编-实验十</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Antid0t3</a></p>
-        <p><span>发布时间:</span>2019-11-18, 21:07:16</p>
-        <p><span>最后更新:</span>2019-11-23, 22:17:47</p>
+        <p><span>发布时间:</span>2020-01-11, 20:52:32</p>
+        <p><span>最后更新:</span>2020-01-12, 15:33:13</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2019/11/18/火柴人/" title="火柴人联盟">https://antid0t3.github.io/2019/11/18/火柴人/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://antid0t3.github.io/2019/11/18/火柴人/　　作者: Antid0t3" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2020/01/11/x86汇编-实验十/" title="x86汇编-实验十">https://antid0t3.github.io/2020/01/11/x86汇编-实验十/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://antid0t3.github.io/2020/01/11/x86汇编-实验十/　　作者: Antid0t3" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
         <p>
@@ -381,16 +638,10 @@
 
     <nav id="article-nav">
         
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2019/11/23/动态调试Smali代码/">
-                    动态调试Smali代码
-                </a>
-            </div>
-        
         
             <div id="article-nav-older" class="article-nav-title">
-                <a href="/2019/11/18/切水果大战/">
-                    切水果大战
+                <a href="/2020/01/09/x86汇编-实验7/">
+                    x86汇编-实验七
                 </a>
             </div>
         
@@ -438,7 +689,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"火柴人联盟　| Hexo　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"x86汇编-实验十　| Hexo　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -458,15 +709,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2019/11/23/动态调试Smali代码/" title="上一篇: 动态调试Smali代码">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/2019/11/18/切水果大战/" title="下一篇: 切水果大战">
+            <a href="/2020/01/09/x86汇编-实验7/" title="下一篇: x86汇编-实验七">
                 <i class="fa fa-angle-right"></i>
             </a>
         
